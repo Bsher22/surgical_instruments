@@ -1,7 +1,7 @@
 // src/utils/tokenStorage.ts
-// Secure token storage using expo-secure-store
+// Platform-aware token storage - SecureStore on native, localStorage on web
 
-import * as SecureStore from 'expo-secure-store';
+import { Platform } from 'react-native';
 import { AuthTokens } from '../types/auth';
 
 const STORAGE_KEYS = {
@@ -9,6 +9,36 @@ const STORAGE_KEYS = {
   REFRESH_TOKEN: 'surgicalprep_refresh_token',
   TOKEN_EXPIRY: 'surgicalprep_token_expiry',
 } as const;
+
+// Platform-aware storage abstraction
+const storage = {
+  async setItem(key: string, value: string): Promise<void> {
+    if (Platform.OS === 'web') {
+      localStorage.setItem(key, value);
+    } else {
+      const SecureStore = require('expo-secure-store');
+      await SecureStore.setItemAsync(key, value);
+    }
+  },
+
+  async getItem(key: string): Promise<string | null> {
+    if (Platform.OS === 'web') {
+      return localStorage.getItem(key);
+    } else {
+      const SecureStore = require('expo-secure-store');
+      return await SecureStore.getItemAsync(key);
+    }
+  },
+
+  async deleteItem(key: string): Promise<void> {
+    if (Platform.OS === 'web') {
+      localStorage.removeItem(key);
+    } else {
+      const SecureStore = require('expo-secure-store');
+      await SecureStore.deleteItemAsync(key);
+    }
+  },
+};
 
 /**
  * Store authentication tokens securely
@@ -19,9 +49,9 @@ export async function storeTokens(tokens: AuthTokens): Promise<void> {
     const expiryTimestamp = Date.now() + tokens.expires_in * 1000;
 
     await Promise.all([
-      SecureStore.setItemAsync(STORAGE_KEYS.ACCESS_TOKEN, tokens.access_token),
-      SecureStore.setItemAsync(STORAGE_KEYS.REFRESH_TOKEN, tokens.refresh_token),
-      SecureStore.setItemAsync(STORAGE_KEYS.TOKEN_EXPIRY, expiryTimestamp.toString()),
+      storage.setItem(STORAGE_KEYS.ACCESS_TOKEN, tokens.access_token),
+      storage.setItem(STORAGE_KEYS.REFRESH_TOKEN, tokens.refresh_token),
+      storage.setItem(STORAGE_KEYS.TOKEN_EXPIRY, expiryTimestamp.toString()),
     ]);
   } catch (error) {
     console.error('Failed to store tokens:', error);
@@ -36,9 +66,9 @@ export async function storeTokens(tokens: AuthTokens): Promise<void> {
 export async function getStoredTokens(): Promise<AuthTokens | null> {
   try {
     const [accessToken, refreshToken, expiryStr] = await Promise.all([
-      SecureStore.getItemAsync(STORAGE_KEYS.ACCESS_TOKEN),
-      SecureStore.getItemAsync(STORAGE_KEYS.REFRESH_TOKEN),
-      SecureStore.getItemAsync(STORAGE_KEYS.TOKEN_EXPIRY),
+      storage.getItem(STORAGE_KEYS.ACCESS_TOKEN),
+      storage.getItem(STORAGE_KEYS.REFRESH_TOKEN),
+      storage.getItem(STORAGE_KEYS.TOKEN_EXPIRY),
     ]);
 
     if (!accessToken || !refreshToken) {
@@ -65,7 +95,7 @@ export async function getStoredTokens(): Promise<AuthTokens | null> {
  */
 export async function getAccessToken(): Promise<string | null> {
   try {
-    return await SecureStore.getItemAsync(STORAGE_KEYS.ACCESS_TOKEN);
+    return await storage.getItem(STORAGE_KEYS.ACCESS_TOKEN);
   } catch (error) {
     console.error('Failed to get access token:', error);
     return null;
@@ -77,7 +107,7 @@ export async function getAccessToken(): Promise<string | null> {
  */
 export async function getRefreshToken(): Promise<string | null> {
   try {
-    return await SecureStore.getItemAsync(STORAGE_KEYS.REFRESH_TOKEN);
+    return await storage.getItem(STORAGE_KEYS.REFRESH_TOKEN);
   } catch (error) {
     console.error('Failed to get refresh token:', error);
     return null;
@@ -94,8 +124,8 @@ export async function updateAccessToken(
   try {
     const expiryTimestamp = Date.now() + expiresIn * 1000;
     await Promise.all([
-      SecureStore.setItemAsync(STORAGE_KEYS.ACCESS_TOKEN, accessToken),
-      SecureStore.setItemAsync(STORAGE_KEYS.TOKEN_EXPIRY, expiryTimestamp.toString()),
+      storage.setItem(STORAGE_KEYS.ACCESS_TOKEN, accessToken),
+      storage.setItem(STORAGE_KEYS.TOKEN_EXPIRY, expiryTimestamp.toString()),
     ]);
   } catch (error) {
     console.error('Failed to update access token:', error);
@@ -109,7 +139,7 @@ export async function updateAccessToken(
  */
 export async function isTokenExpired(bufferSeconds: number = 60): Promise<boolean> {
   try {
-    const expiryStr = await SecureStore.getItemAsync(STORAGE_KEYS.TOKEN_EXPIRY);
+    const expiryStr = await storage.getItem(STORAGE_KEYS.TOKEN_EXPIRY);
     if (!expiryStr) {
       return true;
     }
@@ -130,9 +160,9 @@ export async function isTokenExpired(bufferSeconds: number = 60): Promise<boolea
 export async function clearTokens(): Promise<void> {
   try {
     await Promise.all([
-      SecureStore.deleteItemAsync(STORAGE_KEYS.ACCESS_TOKEN),
-      SecureStore.deleteItemAsync(STORAGE_KEYS.REFRESH_TOKEN),
-      SecureStore.deleteItemAsync(STORAGE_KEYS.TOKEN_EXPIRY),
+      storage.deleteItem(STORAGE_KEYS.ACCESS_TOKEN),
+      storage.deleteItem(STORAGE_KEYS.REFRESH_TOKEN),
+      storage.deleteItem(STORAGE_KEYS.TOKEN_EXPIRY),
     ]);
   } catch (error) {
     console.error('Failed to clear tokens:', error);
@@ -145,8 +175,8 @@ export async function clearTokens(): Promise<void> {
  */
 export async function hasStoredTokens(): Promise<boolean> {
   try {
-    const accessToken = await SecureStore.getItemAsync(STORAGE_KEYS.ACCESS_TOKEN);
-    const refreshToken = await SecureStore.getItemAsync(STORAGE_KEYS.REFRESH_TOKEN);
+    const accessToken = await storage.getItem(STORAGE_KEYS.ACCESS_TOKEN);
+    const refreshToken = await storage.getItem(STORAGE_KEYS.REFRESH_TOKEN);
     return !!(accessToken && refreshToken);
   } catch (error) {
     console.error('Failed to check for stored tokens:', error);

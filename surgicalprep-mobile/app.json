@@ -42,7 +42,8 @@
           "photosPermission": "Allow SurgicalPrep to access your photos to add images to preference cards.",
           "cameraPermission": "Allow SurgicalPrep to access your camera to take photos of surgical setups."
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true

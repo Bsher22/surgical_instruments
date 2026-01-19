@@ -1,5 +1,32 @@
 import { create } from 'zustand';
-import * as SecureStore from 'expo-secure-store';
+import { Platform } from 'react-native';
+
+// Platform-aware storage helper
+const secureStorage = {
+  async getItem(key: string): Promise<string | null> {
+    if (Platform.OS === 'web') {
+      return localStorage.getItem(key);
+    }
+    const SecureStore = require('expo-secure-store');
+    return SecureStore.getItemAsync(key);
+  },
+  async setItem(key: string, value: string): Promise<void> {
+    if (Platform.OS === 'web') {
+      localStorage.setItem(key, value);
+      return;
+    }
+    const SecureStore = require('expo-secure-store');
+    await SecureStore.setItemAsync(key, value);
+  },
+  async deleteItem(key: string): Promise<void> {
+    if (Platform.OS === 'web') {
+      localStorage.removeItem(key);
+      return;
+    }
+    const SecureStore = require('expo-secure-store');
+    await SecureStore.deleteItemAsync(key);
+  },
+};
 
 interface User {
   id: string;
@@ -50,9 +77,9 @@ export const useAuthStore = create<AuthState & AuthActions>((set, get) => ({
     try {
       // API call would go here
       // const response = await api.auth.login({ email, password });
-      // await SecureStore.setItemAsync(TOKEN_KEY, response.token);
+      // await secureStorage.setItem(TOKEN_KEY, response.token);
       // set({ user: response.user, token: response.token, isAuthenticated: true });
-      
+
       // Placeholder for now
       throw new Error('Not implemented - use actual API');
     } catch (error: any) {
@@ -62,8 +89,8 @@ export const useAuthStore = create<AuthState & AuthActions>((set, get) => ({
   },
 
   logout: async () => {
-    await SecureStore.deleteItemAsync(TOKEN_KEY);
-    await SecureStore.deleteItemAsync(USER_KEY);
+    await secureStorage.deleteItem(TOKEN_KEY);
+    await secureStorage.deleteItem(USER_KEY);
     set({ user: null, token: null, isAuthenticated: false });
   },
 
@@ -81,8 +108,8 @@ export const useAuthStore = create<AuthState & AuthActions>((set, get) => ({
   checkAuth: async () => {
     set({ isLoading: true });
     try {
-      const token = await SecureStore.getItemAsync(TOKEN_KEY);
-      const userJson = await SecureStore.getItemAsync(USER_KEY);
+      const token = await secureStorage.getItem(TOKEN_KEY);
+      const userJson = await secureStorage.getItem(USER_KEY);
 
       if (token && userJson) {
         const user = JSON.parse(userJson) as User;
@@ -97,6 +124,6 @@ export const useAuthStore = create<AuthState & AuthActions>((set, get) => ({
 
   setUser: (user: User) => {
     set({ user });
-    SecureStore.setItemAsync(USER_KEY, JSON.stringify(user));
+    secureStorage.setItem(USER_KEY, JSON.stringify(user));
   },
 }));

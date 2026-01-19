@@ -15,7 +15,13 @@
       "Bash(git commit:*)",
       "Bash(git branch:*)",
       "Bash(git push:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(npm install:*)",
+      "Bash(npx expo export:web)",
+      "Bash(npx expo export:*)",
+      "Bash(if not exist assets mkdir assets)",
+      "Bash(npx expo install:*)",
+      "Bash(npx wrangler pages deploy:*)"
     ]
   }
 }

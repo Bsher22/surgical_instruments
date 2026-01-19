@@ -2,13 +2,40 @@
 // API client with error interceptor and retry logic integrated
 
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosError } from 'axios';
-import * as SecureStore from 'expo-secure-store';
+import { Platform } from 'react-native';
 import {
   requestInterceptor,
   responseInterceptor,
   errorInterceptor,
 } from './errorInterceptor';
 import { withRetry, RetryConfig } from '../utils/retry';
+
+// Platform-aware storage helper
+const secureStorage = {
+  async getItem(key: string): Promise<string | null> {
+    if (Platform.OS === 'web') {
+      return localStorage.getItem(key);
+    }
+    const SecureStore = require('expo-secure-store');
+    return SecureStore.getItemAsync(key);
+  },
+  async setItem(key: string, value: string): Promise<void> {
+    if (Platform.OS === 'web') {
+      localStorage.setItem(key, value);
+      return;
+    }
+    const SecureStore = require('expo-secure-store');
+    await SecureStore.setItemAsync(key, value);
+  },
+  async deleteItem(key: string): Promise<void> {
+    if (Platform.OS === 'web') {
+      localStorage.removeItem(key);
+      return;
+    }
+    const SecureStore = require('expo-secure-store');
+    await SecureStore.deleteItemAsync(key);
+  },
+};
 
 // Environment configuration
 const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:8000';
@@ -58,40 +85,40 @@ export const getApiClient = (): AxiosInstance => {
 export const tokenStorage = {
   async getToken(): Promise<string | null> {
     try {
-      return await SecureStore.getItemAsync(TOKEN_KEY);
+      return await secureStorage.getItem(TOKEN_KEY);
     } catch {
       return null;
     }
   },
 
   async setToken(token: string): Promise<void> {
-    await SecureStore.setItemAsync(TOKEN_KEY, token);
+    await secureStorage.setItem(TOKEN_KEY, token);
   },
 
   async removeToken(): Promise<void> {
-    await SecureStore.deleteItemAsync(TOKEN_KEY);
+    await secureStorage.deleteItem(TOKEN_KEY);
   },
 
   async getRefreshToken(): Promise<string | null> {
     try {
-      return await SecureStore.getItemAsync(REFRESH_TOKEN_KEY);
+      return await secureStorage.getItem(REFRESH_TOKEN_KEY);
     } catch {
       return null;
     }
   },
 
   async setRefreshToken(token: string): Promise<void> {
-    await SecureStore.setItemAsync(REFRESH_TOKEN_KEY, token);
+    await secureStorage.setItem(REFRESH_TOKEN_KEY, token);
   },
 
   async removeRefreshToken(): Promise<void> {
-    await SecureStore.deleteItemAsync(REFRESH_TOKEN_KEY);
+    await secureStorage.deleteItem(REFRESH_TOKEN_KEY);
   },
 
   async clearAll(): Promise<void> {
     await Promise.all([
-      SecureStore.deleteItemAsync(TOKEN_KEY),
-      SecureStore.deleteItemAsync(REFRESH_TOKEN_KEY),
+      secureStorage.deleteItem(TOKEN_KEY),
+      secureStorage.deleteItem(REFRESH_TOKEN_KEY),
     ]);
   },
 };

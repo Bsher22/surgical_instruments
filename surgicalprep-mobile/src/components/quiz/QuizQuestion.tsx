@@ -7,11 +7,11 @@ import Animated, {
   SlideInRight,
   SlideOutLeft,
 } from 'react-native-reanimated';
-import type { QuizQuestion as QuizQuestionType, QuizQuestionType as QuestionTypeEnum } from '../../types/quiz';
+import type { QuizQuestion as QuizQuestionData } from '../../types/quiz';
 import { QuizQuestionType } from '../../types/quiz';
 
 interface QuizQuestionDisplayProps {
-  question: QuizQuestionType;
+  question: QuizQuestionData;
   questionNumber: number;
 }
 

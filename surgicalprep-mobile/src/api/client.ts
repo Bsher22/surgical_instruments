@@ -60,10 +60,15 @@ const secureStorage = {
 const getApiBaseUrl = () => {
   const url = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:8000';
   // Ensure URL has protocol
+  let baseUrl = url;
   if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
-    return `https://${url}`;
+    baseUrl = `https://${url}`;
   }
-  return url;
+  // Ensure URL ends with /api for the API prefix
+  if (!baseUrl.endsWith('/api')) {
+    baseUrl = `${baseUrl}/api`;
+  }
+  return baseUrl;
 };
 const API_BASE_URL = getApiBaseUrl();
 const API_TIMEOUT = 30000; // 30 seconds

@@ -11,6 +11,7 @@ export function useAuth() {
     login: store.login,
     logout: store.logout,
     register: store.register,
+    signup: store.register, // Alias for register
   };
 }
 

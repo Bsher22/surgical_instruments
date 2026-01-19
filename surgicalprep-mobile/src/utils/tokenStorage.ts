@@ -14,28 +14,47 @@ const STORAGE_KEYS = {
 const storage = {
   async setItem(key: string, value: string): Promise<void> {
     if (Platform.OS === 'web') {
-      localStorage.setItem(key, value);
+      if (typeof window !== 'undefined' && window.localStorage) {
+        window.localStorage.setItem(key, value);
+      }
     } else {
-      const SecureStore = require('expo-secure-store');
-      await SecureStore.setItemAsync(key, value);
+      try {
+        const SecureStore = require('expo-secure-store');
+        await SecureStore.setItemAsync(key, value);
+      } catch {
+        // Silently fail
+      }
     }
   },
 
   async getItem(key: string): Promise<string | null> {
     if (Platform.OS === 'web') {
-      return localStorage.getItem(key);
+      if (typeof window !== 'undefined' && window.localStorage) {
+        return window.localStorage.getItem(key);
+      }
+      return null;
     } else {
-      const SecureStore = require('expo-secure-store');
-      return await SecureStore.getItemAsync(key);
+      try {
+        const SecureStore = require('expo-secure-store');
+        return await SecureStore.getItemAsync(key);
+      } catch {
+        return null;
+      }
     }
   },
 
   async deleteItem(key: string): Promise<void> {
     if (Platform.OS === 'web') {
-      localStorage.removeItem(key);
+      if (typeof window !== 'undefined' && window.localStorage) {
+        window.localStorage.removeItem(key);
+      }
     } else {
-      const SecureStore = require('expo-secure-store');
-      await SecureStore.deleteItemAsync(key);
+      try {
+        const SecureStore = require('expo-secure-store');
+        await SecureStore.deleteItemAsync(key);
+      } catch {
+        // Silently fail
+      }
     }
   },
 };

@@ -5,26 +5,48 @@ import { Platform } from 'react-native';
 const secureStorage = {
   async getItem(key: string): Promise<string | null> {
     if (Platform.OS === 'web') {
-      return localStorage.getItem(key);
+      if (typeof window !== 'undefined' && window.localStorage) {
+        return window.localStorage.getItem(key);
+      }
+      return null;
     }
-    const SecureStore = require('expo-secure-store');
-    return SecureStore.getItemAsync(key);
+    // Only require expo-secure-store on native platforms
+    try {
+      const SecureStore = require('expo-secure-store');
+      return await SecureStore.getItemAsync(key);
+    } catch {
+      return null;
+    }
   },
   async setItem(key: string, value: string): Promise<void> {
     if (Platform.OS === 'web') {
-      localStorage.setItem(key, value);
+      if (typeof window !== 'undefined' && window.localStorage) {
+        window.localStorage.setItem(key, value);
+      }
       return;
     }
-    const SecureStore = require('expo-secure-store');
-    await SecureStore.setItemAsync(key, value);
+    // Only require expo-secure-store on native platforms
+    try {
+      const SecureStore = require('expo-secure-store');
+      await SecureStore.setItemAsync(key, value);
+    } catch {
+      // Silently fail on error
+    }
   },
   async deleteItem(key: string): Promise<void> {
     if (Platform.OS === 'web') {
-      localStorage.removeItem(key);
+      if (typeof window !== 'undefined' && window.localStorage) {
+        window.localStorage.removeItem(key);
+      }
       return;
     }
-    const SecureStore = require('expo-secure-store');
-    await SecureStore.deleteItemAsync(key);
+    // Only require expo-secure-store on native platforms
+    try {
+      const SecureStore = require('expo-secure-store');
+      await SecureStore.deleteItemAsync(key);
+    } catch {
+      // Silently fail on error
+    }
   },
 };
 
@@ -51,6 +73,7 @@ interface AuthActions {
   logout: () => Promise<void>;
   register: (data: RegisterData) => Promise<void>;
   checkAuth: () => Promise<void>;
+  checkAuthStatus: () => Promise<void>;
   setUser: (user: User) => void;
 }
 
@@ -120,6 +143,12 @@ export const useAuthStore = create<AuthState & AuthActions>((set, get) => ({
     } catch (error) {
       set({ isLoading: false });
     }
+  },
+
+  // Alias for checkAuth - used by _layout.tsx
+  checkAuthStatus: async () => {
+    const { checkAuth } = useAuthStore.getState();
+    await checkAuth();
   },
 
   setUser: (user: User) => {

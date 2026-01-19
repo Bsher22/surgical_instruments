@@ -57,7 +57,15 @@ const secureStorage = {
 };
 
 // Environment configuration
-const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:8000';
+const getApiBaseUrl = () => {
+  const url = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:8000';
+  // Ensure URL has protocol
+  if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
+    return `https://${url}`;
+  }
+  return url;
+};
+const API_BASE_URL = getApiBaseUrl();
 const API_TIMEOUT = 30000; // 30 seconds
 
 // Token storage keys
@@ -292,4 +300,12 @@ export const api = {
 };
 
 // Export the client instance for direct use if needed
+export const apiClient = {
+  get: <T>(url: string, config?: AxiosRequestConfig) => getApiClient().get<T>(url, config),
+  post: <T>(url: string, data?: unknown, config?: AxiosRequestConfig) => getApiClient().post<T>(url, data, config),
+  put: <T>(url: string, data?: unknown, config?: AxiosRequestConfig) => getApiClient().put<T>(url, data, config),
+  patch: <T>(url: string, data?: unknown, config?: AxiosRequestConfig) => getApiClient().patch<T>(url, data, config),
+  delete: <T>(url: string, config?: AxiosRequestConfig) => getApiClient().delete<T>(url, config),
+};
+
 export default getApiClient;

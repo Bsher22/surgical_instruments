@@ -17,13 +17,27 @@ import {
 } from '../api/instruments';
 import type {
   Instrument,
-  InstrumentDetail,
-  InstrumentsResponse,
-  GetInstrumentsParams,
-  InstrumentSearchParams,
-  InstrumentSearchResponse,
+  InstrumentListParams,
+  InstrumentListResponse,
   InstrumentCategory,
-} from '../types/instruments';
+} from '../types/instrument';
+
+// Re-export types using aliases to match expected API
+export type GetInstrumentsParams = InstrumentListParams;
+export type InstrumentsResponse = InstrumentListResponse;
+export type InstrumentDetail = Instrument;
+
+export interface InstrumentSearchParams {
+  query: string;
+  category?: InstrumentCategory;
+  limit?: number;
+}
+
+export interface InstrumentSearchResponse {
+  items: Instrument[];
+  total: number;
+  query: string;
+}
 
 // Query key factory for consistent cache keys
 export const instrumentKeys = {
@@ -89,7 +103,7 @@ export function useInfiniteInstruments(
     queryFn: ({ pageParam }) => getInstruments({ ...params, page: pageParam }),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
-      if (lastPage.has_next) {
+      if (lastPage.has_more) {
         return lastPage.page + 1;
       }
       return undefined;
@@ -231,12 +245,7 @@ export function useInstrumentsByIds(
 }
 
 // Re-export types for convenience
-export type { 
-  Instrument, 
-  InstrumentDetail, 
-  InstrumentsResponse,
+export type {
+  Instrument,
   InstrumentCategory,
-  GetInstrumentsParams,
-  InstrumentSearchParams,
-  InstrumentSearchResponse,
 };

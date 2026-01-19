@@ -4,6 +4,19 @@ import {
   InstrumentListParams,
   InstrumentListResponse,
 } from '../types/instrument';
+import type {
+  GetInstrumentsParams,
+  InstrumentsResponse,
+  InstrumentSearchParams,
+  InstrumentSearchResponse,
+  InstrumentCategory,
+} from '../types/instruments';
+
+// Category count type for categories endpoint
+export interface CategoryCount {
+  category: InstrumentCategory;
+  count: number;
+}
 
 /**
  * Get a paginated list of instruments with optional filtering
@@ -70,6 +83,45 @@ export async function getBookmarkedInstruments(
   const response = await apiClient.post<Instrument[]>(
     '/instruments/batch',
     { ids }
+  );
+  return response.data;
+}
+
+/**
+ * Get all categories with instrument counts
+ */
+export async function getCategories(): Promise<CategoryCount[]> {
+  const response = await apiClient.get<CategoryCount[]>('/instruments/categories');
+  return response.data;
+}
+
+/**
+ * Get instruments by array of IDs
+ */
+export async function getInstrumentsByIds(ids: string[]): Promise<Instrument[]> {
+  if (ids.length === 0) return [];
+
+  const response = await apiClient.post<Instrument[]>('/instruments/batch', { ids });
+  return response.data;
+}
+
+/**
+ * Get popular/commonly studied instruments
+ */
+export async function getPopularInstruments(limit: number = 10): Promise<Instrument[]> {
+  const response = await apiClient.get<Instrument[]>(`/instruments/popular?limit=${limit}`);
+  return response.data;
+}
+
+/**
+ * Get related instruments based on a source instrument
+ */
+export async function getRelatedInstruments(
+  id: string,
+  limit: number = 5
+): Promise<Instrument[]> {
+  const response = await apiClient.get<Instrument[]>(
+    `/instruments/${id}/related?limit=${limit}`
   );
   return response.data;
 }

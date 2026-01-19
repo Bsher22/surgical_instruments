@@ -43,3 +43,35 @@ export interface PaginatedResponse<T> {
   page_size: number;
   total_pages: number;
 }
+
+// Types for useInstruments hook
+export interface GetInstrumentsParams {
+  search?: string;
+  category?: InstrumentCategory;
+  page?: number;
+  limit?: number;
+}
+
+export interface InstrumentsResponse {
+  items: Instrument[];
+  total: number;
+  page: number;
+  limit: number;
+  has_more: boolean;
+}
+
+export interface InstrumentDetail extends Instrument {
+  // Extended details if needed for detail view
+}
+
+export interface InstrumentSearchParams {
+  query: string;
+  category?: InstrumentCategory;
+  limit?: number;
+}
+
+export interface InstrumentSearchResponse {
+  items: Instrument[];
+  total: number;
+  query: string;
+}

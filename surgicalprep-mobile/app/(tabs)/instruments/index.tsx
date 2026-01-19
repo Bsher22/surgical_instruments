@@ -23,8 +23,8 @@ import {
 import { LoadingSkeleton, LoadingSkeletonRow } from '../../../src/components/LoadingSkeleton';
 import { NoSearchResults, NoInstruments, NetworkError } from '../../../src/components/EmptyState';
 
-// API & Types
-import { useInstruments } from '../../../src/api/instruments';
+// Hooks & Types
+import { useInfiniteInstruments } from '../../../src/hooks/useInstruments';
 import type { Instrument, InstrumentCategory } from '../../../src/types/instruments';
 
 // Constants
@@ -60,10 +60,10 @@ export default function InstrumentsListScreen() {
     fetchNextPage,
     refetch,
     isRefetching,
-  } = useInstruments({
+  } = useInfiniteInstruments({
     search: searchQuery || undefined,
-    category: selectedCategory,
-    page_size: PAGE_SIZE,
+    category: selectedCategory || undefined,
+    limit: PAGE_SIZE,
   });
 
   // Flatten paginated data into single array

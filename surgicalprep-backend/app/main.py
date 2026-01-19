@@ -8,16 +8,15 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.endpoints import auth, instruments, cards, quiz, users, storage
 from app.core.config import settings
 from app.db.database import engine, Base
+# Import all models to ensure they are registered with Base.metadata
+from app.db import models  # noqa: F401
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup: Create tables if they don't exist (for development)
-    # In production, use migrations via Alembic
+    # Startup: Create tables if they don't exist
     async with engine.begin() as conn:
-        # Uncomment for initial setup:
-        # await conn.run_sync(Base.metadata.create_all)
-        pass
+        await conn.run_sync(Base.metadata.create_all)
     yield
     # Shutdown
     await engine.dispose()

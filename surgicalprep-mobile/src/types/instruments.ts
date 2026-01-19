@@ -56,8 +56,8 @@ export interface InstrumentsResponse {
   items: Instrument[];
   total: number;
   page: number;
-  limit: number;
-  has_more: boolean;
+  page_size: number;
+  total_pages: number;
 }
 
 export interface InstrumentDetail extends Instrument {

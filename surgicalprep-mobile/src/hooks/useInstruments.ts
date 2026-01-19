@@ -103,7 +103,8 @@ export function useInfiniteInstruments(
     queryFn: ({ pageParam }) => getInstruments({ ...params, page: pageParam }),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
-      if (lastPage.has_more) {
+      // Check if there are more pages
+      if (lastPage.page < lastPage.total_pages) {
         return lastPage.page + 1;
       }
       return undefined;

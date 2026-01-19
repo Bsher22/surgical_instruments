@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command:*)",
+      "Bash(for zip in *.zip)",
+      "Bash(do unzip -o \"$zip\" -d extracted)",
+      "Bash(done)",
+      "Bash(for stage in stage-2b stage-2c stage-2d stage-3a stage-3b stage-3c stage3d stage-4a stage4b stage4c stage-5a stage-5b stage-5c stage-5d-photo-upload stage-6a stage-6b stage-6c stage7 stage8 stage9_content_population surgicalprep-stage1a)",
+      "Bash(do echo \"=== $stage ===\" find \"/c/Users/Brian/Desktop/surgical_instruments/extracted/$stage\" -type f)",
+      "Bash(for stage in stage-10-polish-performance stage11-testing-qa stage-12-launch-prep home)",
+      "Bash(find . -type d -name \"*{*\" -exec rm -rf {} +)",
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(python:*)"
+    ]
+  }
+}

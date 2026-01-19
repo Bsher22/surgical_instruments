@@ -7,8 +7,7 @@ from fastapi import APIRouter, Depends, File, UploadFile, HTTPException, Query
 from typing import Optional
 from pydantic import BaseModel
 
-from app.core.security import get_current_user
-from app.db.models import User
+from app.core.security import get_current_user_id
 from app.services.storage import get_storage_service, R2StorageService
 
 
@@ -55,7 +54,7 @@ MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
 async def upload_file(
     file: UploadFile = File(...),
     folder: str = Query(default="cards", description="Storage folder"),
-    current_user: User = Depends(get_current_user),
+    user_id: str = Depends(get_current_user_id),
     storage: R2StorageService = Depends(get_storage_service),
 ):
     """
@@ -94,7 +93,7 @@ async def upload_file(
             data=content,
             filename=file.filename or "image.jpg",
             folder=folder,
-            user_id=str(current_user.id),
+            user_id=user_id,
             content_type=file.content_type,
         )
 
@@ -109,7 +108,7 @@ async def get_presigned_upload_url(
     filename: str = Query(..., description="Original filename"),
     folder: str = Query(default="cards", description="Storage folder"),
     content_type: str = Query(default="image/jpeg", description="File MIME type"),
-    current_user: User = Depends(get_current_user),
+    user_id: str = Depends(get_current_user_id),
     storage: R2StorageService = Depends(get_storage_service),
 ):
     """
@@ -143,7 +142,7 @@ async def get_presigned_upload_url(
         result = storage.generate_presigned_upload_url(
             filename=filename,
             folder=folder,
-            user_id=str(current_user.id),
+            user_id=user_id,
             content_type=content_type,
             expires_in=3600,  # 1 hour
         )
@@ -157,7 +156,7 @@ async def get_presigned_upload_url(
 @router.delete("/delete")
 async def delete_file(
     key: str = Query(..., description="Storage key to delete"),
-    current_user: User = Depends(get_current_user),
+    user_id: str = Depends(get_current_user_id),
     storage: R2StorageService = Depends(get_storage_service),
 ):
     """
@@ -168,8 +167,8 @@ async def delete_file(
     Users can only delete their own files.
     """
     # Security: Verify user owns this file
-    user_prefix = f"/{str(current_user.id)}/"
-    if user_prefix not in key and not key.startswith(f"cards/{current_user.id}/"):
+    user_prefix = f"/{user_id}/"
+    if user_prefix not in key and not key.startswith(f"cards/{user_id}/"):
         raise HTTPException(
             status_code=403,
             detail="You can only delete your own files",
@@ -186,7 +185,7 @@ async def delete_file(
 @router.get("/list", response_model=list[FileInfo])
 async def list_files(
     folder: str = Query(default="cards", description="Storage folder"),
-    current_user: User = Depends(get_current_user),
+    user_id: str = Depends(get_current_user_id),
     storage: R2StorageService = Depends(get_storage_service),
 ):
     """
@@ -196,7 +195,7 @@ async def list_files(
 
     Returns files owned by the current user.
     """
-    prefix = f"{folder}/{current_user.id}/"
+    prefix = f"{folder}/{user_id}/"
 
     try:
         files = await storage.list_files(prefix=prefix)

@@ -29,10 +29,16 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS Configuration
+# CORS Configuration - Allow Cloudflare Pages preview deployments
+# Cloudflare Pages uses unique subdomains for each deployment (e.g., abc123.surgicalprep.pages.dev)
+cors_origins = list(settings.CORS_ORIGINS)
+# Add wildcard support for Cloudflare Pages subdomains
+cors_origins.append("https://surgicalprep.pages.dev")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,
+    allow_origins=cors_origins,
+    allow_origin_regex=r"https://.*\.surgicalprep\.pages\.dev",  # Allow all Cloudflare preview deployments
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -1,0 +1,28 @@
+# Backend Test Dependencies
+# Install with: pip install -r requirements-test.txt
+
+# Testing Framework
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.1.0
+pytest-xdist>=3.5.0  # Parallel test execution
+
+# Async Testing
+aiosqlite>=0.19.0  # SQLite async driver for testing
+httpx>=0.26.0  # Async HTTP client for testing
+
+# Mocking
+pytest-mock>=3.12.0
+responses>=0.24.1
+factory-boy>=3.3.0
+
+# Code Quality (optional but recommended)
+mypy>=1.8.0
+ruff>=0.1.11
+
+# Coverage Reporting
+coverage[toml]>=7.4.0
+
+# Test Utilities
+freezegun>=1.4.0  # Time mocking
+faker>=22.0.0  # Fake data generation

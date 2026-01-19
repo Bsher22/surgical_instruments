@@ -1,0 +1,1 @@
+Placeholder - Replace with actual icon (1024x1024 PNG)

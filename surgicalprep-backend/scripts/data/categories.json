@@ -1,0 +1,148 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "description": "Instrument category definitions with display order and descriptions"
+  },
+  "categories": [
+    {
+      "name": "Cutting & Dissecting",
+      "order": 1,
+      "description": "Instruments used to cut, incise, or dissect tissue including scalpels, scissors, and osteotomes.",
+      "examples": ["Scalpel blades", "Mayo scissors", "Metzenbaum scissors", "Iris scissors", "Osteotomes"],
+      "icon": "scissors"
+    },
+    {
+      "name": "Clamps & Forceps",
+      "order": 2,
+      "description": "Locking instruments used to occlude vessels, grasp tissue, or secure structures. Includes hemostats and vascular clamps.",
+      "examples": ["Kelly forceps", "Kocher forceps", "Mosquito forceps", "Satinsky clamp", "Bulldog clamp"],
+      "icon": "clamp"
+    },
+    {
+      "name": "Grasping & Holding",
+      "order": 3,
+      "description": "Non-locking thumb forceps and tissue forceps used to hold, manipulate, and stabilize tissue during procedures.",
+      "examples": ["Adson forceps", "DeBakey forceps", "Allis forceps", "Babcock forceps", "Russian forceps"],
+      "icon": "hand"
+    },
+    {
+      "name": "Retractors",
+      "order": 4,
+      "description": "Instruments used to hold back tissue and organs to provide surgical exposure. Includes handheld and self-retaining types.",
+      "examples": ["Army-Navy", "Richardson", "Deaver", "Balfour", "Weitlaner", "Gelpi"],
+      "icon": "expand"
+    },
+    {
+      "name": "Suturing",
+      "order": 5,
+      "description": "Instruments specifically designed for holding needles and manipulating suture material during wound closure.",
+      "examples": ["Mayo-Hegar needle holder", "Crile-Wood needle holder", "Castroviejo needle holder", "Suture scissors"],
+      "icon": "needle"
+    },
+    {
+      "name": "Probes & Dilators",
+      "order": 6,
+      "description": "Instruments used to explore, measure, or dilate body cavities, ducts, and passages.",
+      "examples": ["Grooved director", "Hegar dilators", "Van Buren sounds", "Lacrimal probes", "Uterine sound"],
+      "icon": "probe"
+    },
+    {
+      "name": "Specialty",
+      "order": 7,
+      "description": "Procedure-specific instruments and equipment including laparoscopic instruments, suction devices, and drains.",
+      "examples": ["Yankauer suction", "Trocars", "Laparoscopic graspers", "Specimen bags", "Foley catheter"],
+      "icon": "star"
+    },
+    {
+      "name": "Powered",
+      "order": 8,
+      "description": "Electrically or pneumatically powered surgical instruments including saws, drills, and energy devices.",
+      "examples": ["Bovie", "Harmonic scalpel", "LigaSure", "Sagittal saw", "Surgical drill", "Dermatome"],
+      "icon": "bolt"
+    }
+  ],
+  "specialties": [
+    {
+      "name": "General Surgery",
+      "abbreviation": "GS",
+      "common_categories": ["Cutting & Dissecting", "Clamps & Forceps", "Retractors", "Suturing"]
+    },
+    {
+      "name": "Orthopedic",
+      "abbreviation": "ORTHO",
+      "common_categories": ["Cutting & Dissecting", "Specialty", "Powered", "Retractors"]
+    },
+    {
+      "name": "OB/GYN",
+      "abbreviation": "OB",
+      "common_categories": ["Clamps & Forceps", "Retractors", "Probes & Dilators", "Specialty"]
+    },
+    {
+      "name": "Cardiovascular",
+      "abbreviation": "CV",
+      "common_categories": ["Clamps & Forceps", "Specialty", "Powered", "Suturing"]
+    },
+    {
+      "name": "Neurosurgery",
+      "abbreviation": "NEURO",
+      "common_categories": ["Cutting & Dissecting", "Specialty", "Powered", "Retractors"]
+    },
+    {
+      "name": "Plastic Surgery",
+      "abbreviation": "PLASTICS",
+      "common_categories": ["Cutting & Dissecting", "Grasping & Holding", "Specialty", "Suturing"]
+    },
+    {
+      "name": "Urology",
+      "abbreviation": "URO",
+      "common_categories": ["Probes & Dilators", "Specialty", "Retractors"]
+    },
+    {
+      "name": "ENT",
+      "abbreviation": "ENT",
+      "common_categories": ["Specialty", "Cutting & Dissecting", "Retractors"]
+    },
+    {
+      "name": "Ophthalmology",
+      "abbreviation": "OPHTHO",
+      "common_categories": ["Cutting & Dissecting", "Grasping & Holding", "Specialty"]
+    },
+    {
+      "name": "Vascular Surgery",
+      "abbreviation": "VASC",
+      "common_categories": ["Clamps & Forceps", "Specialty", "Cutting & Dissecting"]
+    }
+  ],
+  "card_item_categories": [
+    {
+      "name": "instruments",
+      "display_name": "Instruments",
+      "order": 1,
+      "description": "Reusable surgical instruments"
+    },
+    {
+      "name": "supplies",
+      "display_name": "Supplies",
+      "order": 2,
+      "description": "Disposable supplies and consumables"
+    },
+    {
+      "name": "sutures",
+      "display_name": "Sutures",
+      "order": 3,
+      "description": "Suture materials and closure devices"
+    },
+    {
+      "name": "implants",
+      "display_name": "Implants/Special",
+      "order": 4,
+      "description": "Implantable devices and specialty items"
+    },
+    {
+      "name": "specialty",
+      "display_name": "Specialty Equipment",
+      "order": 5,
+      "description": "Procedure-specific specialty equipment"
+    }
+  ]
+}

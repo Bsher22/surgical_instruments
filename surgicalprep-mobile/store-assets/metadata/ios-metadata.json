@@ -1,0 +1,125 @@
+{
+  "app_store_connect": {
+    "app_name": "SurgicalPrep - Instrument Study",
+    "subtitle": "Flashcards & Preference Cards",
+    "primary_category": "Medical",
+    "secondary_category": "Education",
+    "content_rights": "This app does not contain, show, or access third-party content.",
+    "age_rating": {
+      "rating": "4+",
+      "medical_info": true,
+      "mature_content": false
+    },
+    "pricing": {
+      "price_tier": "Free",
+      "in_app_purchases": true
+    }
+  },
+  "app_information": {
+    "name": "SurgicalPrep - Instrument Study",
+    "subtitle": "Flashcards & Preference Cards",
+    "privacy_policy_url": "https://surgicalprep.app/privacy",
+    "support_url": "https://surgicalprep.app/support",
+    "marketing_url": "https://surgicalprep.app"
+  },
+  "version_information": {
+    "version": "1.0.0",
+    "copyright": "© 2026 SurgicalPrep",
+    "whats_new": "Initial release of SurgicalPrep!\n\n• Browse 200+ surgical instruments with detailed information\n• Create and manage preference cards\n• Study with flashcards and multiple choice quizzes\n• Track your learning progress\n• Spaced repetition for optimal retention"
+  },
+  "description": {
+    "full_description": "SurgicalPrep is the ultimate study companion for surgical technologists, OR nurses, and surgical technology students. Master surgical instruments, create preference cards, and track your learning progress with our comprehensive study tools.\n\n📚 INSTRUMENT DATABASE\n• Browse 200+ surgical instruments across all specialties\n• High-quality images with zoom capability\n• Detailed descriptions, uses, and handling notes\n• Full-text search and category filtering\n• Common procedures and aliases for each instrument\n\n📋 PREFERENCE CARDS\n• Create digital preference cards for any procedure\n• Add instruments from our database or custom items\n• Organize by surgeon, procedure, and specialty\n• Attach setup photos for visual reference\n• Duplicate and customize existing cards\n• Access template cards for common procedures\n\n🧠 STUDY TOOLS\n• Flashcard mode with swipe-to-learn interface\n• Multiple choice quizzes with instant feedback\n• Spaced repetition algorithm for optimal retention\n• Track your progress and study streaks\n• Review instruments due for practice\n\n✨ PREMIUM FEATURES\n• Unlimited preference cards (Free: 5 cards)\n• Unlimited daily quizzes (Free: 3/day)\n• Access to all instrument details\n• Priority support\n\nPerfect for:\n• Surgical Technologists preparing for certification\n• CST exam preparation\n• OR Nurses expanding their knowledge\n• Surgical Technology students\n• Healthcare professionals in the operating room\n\nStart your surgical prep journey today!\n\nQuestions or feedback? Contact us at support@surgicalprep.app",
+    "promotional_text": "Master surgical instruments with flashcards, quizzes, and digital preference cards. Perfect for surgical techs, OR nurses, and students!",
+    "keywords": "surgical instruments,scrub tech,preference cards,flashcards,CST exam,OR nursing,surgery,medical"
+  },
+  "app_review_information": {
+    "demo_account": {
+      "required": true,
+      "username": "demo@surgicalprep.app",
+      "password": "DemoUser2026!",
+      "notes": "This demo account has premium access enabled for review purposes."
+    },
+    "contact": {
+      "first_name": "Your",
+      "last_name": "Name",
+      "phone": "+1-555-555-5555",
+      "email": "review@surgicalprep.app"
+    },
+    "notes": "SurgicalPrep is an educational app for surgical technologists and OR nurses to study surgical instruments and create preference cards. It does not provide medical advice or store patient data. The app requires an account to save user progress and preference cards."
+  },
+  "in_app_purchases": [
+    {
+      "reference_name": "Premium Monthly",
+      "product_id": "com.yourname.surgicalprep.premium.monthly",
+      "type": "Auto-Renewable Subscription",
+      "price_tier": "4.99",
+      "duration": "1 Month",
+      "display_name": "Premium Monthly",
+      "description": "Unlock unlimited preference cards, unlimited quizzes, and full instrument details."
+    },
+    {
+      "reference_name": "Premium Annual",
+      "product_id": "com.yourname.surgicalprep.premium.annual",
+      "type": "Auto-Renewable Subscription",
+      "price_tier": "29.99",
+      "duration": "1 Year",
+      "display_name": "Premium Annual",
+      "description": "Save 50%! Unlock unlimited preference cards, unlimited quizzes, and full instrument details for a full year."
+    }
+  ],
+  "screenshots": {
+    "iphone_6_7_inch": {
+      "device": "iPhone 15 Pro Max",
+      "size": "1290 x 2796",
+      "required": 3,
+      "recommended": 5,
+      "content": [
+        "1_instrument_browser.png - Instrument list with search",
+        "2_instrument_detail.png - Instrument detail view",
+        "3_preference_cards.png - Preference card list",
+        "4_flashcard_study.png - Flashcard study mode",
+        "5_quiz_results.png - Quiz results screen"
+      ]
+    },
+    "iphone_6_5_inch": {
+      "device": "iPhone 14 Plus",
+      "size": "1284 x 2778",
+      "required": 3,
+      "recommended": 5,
+      "content": "Same as 6.7 inch"
+    },
+    "iphone_5_5_inch": {
+      "device": "iPhone 8 Plus",
+      "size": "1242 x 2208",
+      "required": 3,
+      "recommended": 5,
+      "content": "Same as 6.7 inch"
+    },
+    "ipad_12_9_inch": {
+      "device": "iPad Pro 12.9\"",
+      "size": "2048 x 2732",
+      "required": 3,
+      "recommended": 5,
+      "content": "Same as iPhone, optimized for iPad layout"
+    }
+  },
+  "app_icon": {
+    "size": "1024 x 1024",
+    "format": "PNG",
+    "requirements": [
+      "No alpha channel (transparency)",
+      "No rounded corners (system adds them)",
+      "sRGB color space",
+      "72 DPI minimum"
+    ]
+  },
+  "export_compliance": {
+    "uses_encryption": false,
+    "encryption_updated": false,
+    "notes": "App uses HTTPS for network communication (standard TLS). No custom encryption algorithms. ITSAppUsesNonExemptEncryption is set to false."
+  },
+  "idfa_usage": {
+    "uses_idfa": false,
+    "purposes": []
+  }
+}

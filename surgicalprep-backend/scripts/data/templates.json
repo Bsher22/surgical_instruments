@@ -1,0 +1,1465 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2024-01-15",
+    "total_templates": 15
+  },
+  "templates": [
+    {
+      "title": "Laparoscopic Cholecystectomy",
+      "surgeon_name": "Template",
+      "procedure_name": "Laparoscopic Cholecystectomy",
+      "specialty": "General Surgery",
+      "general_notes": "Standard 4-port laparoscopic cholecystectomy. Patient in supine position with reverse Trendelenburg and left lateral tilt. Surgeon stands on patient's left side. Critical view of safety must be achieved before clipping cystic duct and artery.",
+      "setup_notes": "Mayo stand: Clip appliers (x2), lap scissors, Maryland dissector, graspers. Back table: Additional clips, specimen bag, suction irrigator. Ensure CO2 tank full, camera white balanced.",
+      "items": [
+        {
+          "instrument_name": "Veress Needle",
+          "quantity": 1,
+          "size": null,
+          "notes": "For initial insufflation at umbilicus",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Trocar 10/12mm",
+          "quantity": 2,
+          "size": "12mm",
+          "notes": "Umbilical (camera) and epigastric (working)",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Trocar 5mm",
+          "quantity": 2,
+          "size": "5mm",
+          "notes": "Right subcostal ports for retraction",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Endoscopic Camera",
+          "quantity": 1,
+          "size": "10mm, 30-degree",
+          "notes": "30-degree scope preferred",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Laparoscopic Grasper",
+          "quantity": 2,
+          "size": "5mm",
+          "notes": "One for fundus, one for infundibulum",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Laparoscopic Scissors",
+          "quantity": 1,
+          "size": "5mm",
+          "notes": "Hook scissors or Metzenbaum style",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Laparoscopic Clip Applier",
+          "quantity": 2,
+          "size": "Medium-Large",
+          "notes": "One for artery, one for duct. Have backup loaded.",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Bovie Electrocautery Pencil",
+          "quantity": 1,
+          "size": null,
+          "notes": "L-hook preferred for dissection",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Specimen Retrieval Bag",
+          "quantity": 1,
+          "size": "Medium",
+          "notes": "For gallbladder extraction",
+          "category": "supplies"
+        },
+        {
+          "instrument_name": "Fan Retractor",
+          "quantity": 1,
+          "size": null,
+          "notes": "For liver retraction if needed",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Cholangiogram Catheter",
+          "quantity": 1,
+          "size": "5 Fr",
+          "notes": "If intraoperative cholangiogram planned",
+          "category": "supplies"
+        },
+        {
+          "custom_name": "Suction Irrigator",
+          "quantity": 1,
+          "size": "5mm",
+          "notes": "For irrigation and suction",
+          "category": "instruments"
+        }
+      ]
+    },
+    {
+      "title": "Open Appendectomy",
+      "surgeon_name": "Template",
+      "procedure_name": "Open Appendectomy",
+      "specialty": "General Surgery",
+      "general_notes": "McBurney incision or right lower quadrant transverse incision. Appendix identified, mesoappendix ligated, and appendix transected at base with purse-string inversion of stump.",
+      "setup_notes": "Mayo stand: Metz, bovie, Babcock, right angles, ties. Back table: Richardson retractors, lap sponges, appendix stump supplies.",
+      "items": [
+        {
+          "instrument_name": "#10 Scalpel Blade",
+          "quantity": 1,
+          "size": null,
+          "notes": "On #3 handle",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Metzenbaum Scissors",
+          "quantity": 1,
+          "size": "7 inch",
+          "notes": "For dissection",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Mayo Scissors - Curved",
+          "quantity": 1,
+          "size": null,
+          "notes": "For fascia",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Bovie Electrocautery Pencil",
+          "quantity": 1,
+          "size": null,
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Army-Navy Retractor",
+          "quantity": 2,
+          "size": null,
+          "notes": "For skin and subcutaneous",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Richardson Retractor",
+          "quantity": 2,
+          "size": "Small and Medium",
+          "notes": "For muscle retraction",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Babcock Tissue Forceps",
+          "quantity": 2,
+          "size": null,
+          "notes": "For bowel handling and appendix delivery",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Right Angle Clamp",
+          "quantity": 2,
+          "size": null,
+          "notes": "For mesoappendix",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Kelly Hemostatic Forceps",
+          "quantity": 4,
+          "size": null,
+          "notes": "For clamping mesoappendix",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Crile Hemostatic Forceps",
+          "quantity": 2,
+          "size": null,
+          "notes": "For appendix base",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Allis Tissue Forceps",
+          "quantity": 2,
+          "size": null,
+          "notes": "For cecum if needed",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Mayo-Hegar Needle Holder",
+          "quantity": 2,
+          "size": "6 inch and 7 inch",
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "custom_name": "2-0 Silk Ties",
+          "quantity": 1,
+          "size": "18 inch",
+          "notes": "For mesoappendix ligation",
+          "category": "sutures"
+        },
+        {
+          "custom_name": "0 Chromic Ties",
+          "quantity": 1,
+          "size": "18 inch",
+          "notes": "For appendix stump",
+          "category": "sutures"
+        },
+        {
+          "custom_name": "3-0 Vicryl",
+          "quantity": 2,
+          "size": "SH needle",
+          "notes": "For purse-string and Z-stitch",
+          "category": "sutures"
+        }
+      ]
+    },
+    {
+      "title": "Total Knee Arthroplasty",
+      "surgeon_name": "Template",
+      "procedure_name": "Total Knee Replacement",
+      "specialty": "Orthopedic",
+      "general_notes": "Patient supine with knee flexed. Tourniquet applied to upper thigh. Medial parapatellar approach. Bone cuts made with cutting guides. Trial components placed, range of motion verified, then final components cemented.",
+      "setup_notes": "Ring stand with power equipment. Mayo stand: Bovie, saw blades, osteotomes. Implant trays opened on back table. Cement mixing supplies ready.",
+      "items": [
+        {
+          "instrument_name": "#10 Scalpel Blade",
+          "quantity": 2,
+          "size": null,
+          "notes": "One for skin, one for deep",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Bovie Electrocautery Pencil",
+          "quantity": 1,
+          "size": null,
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Sagittal Saw",
+          "quantity": 1,
+          "size": null,
+          "notes": "With appropriate blade for bone cuts",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Osteotome",
+          "quantity": 3,
+          "size": "1/4, 1/2, 3/4 inch",
+          "notes": "For bone removal and preparation",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Periosteal Elevator",
+          "quantity": 2,
+          "size": null,
+          "notes": "Cobb and Key elevator",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Rongeur",
+          "quantity": 2,
+          "size": null,
+          "notes": "For bone trimming",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Bone Curette",
+          "quantity": 2,
+          "size": "Small and Large",
+          "notes": "For canal preparation",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Weitlaner Retractor",
+          "quantity": 2,
+          "size": null,
+          "notes": "Self-retaining for exposure",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Hohmann Retractor",
+          "quantity": 4,
+          "size": "Various",
+          "notes": "For bone retraction",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Surgical Power Drill",
+          "quantity": 1,
+          "size": null,
+          "notes": "For guide pin placement",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Femoral Cutting Guide",
+          "quantity": 1,
+          "size": "Per templating",
+          "notes": "Specific to implant system",
+          "category": "specialty"
+        },
+        {
+          "custom_name": "Tibial Cutting Guide",
+          "quantity": 1,
+          "size": "Per templating",
+          "notes": "Specific to implant system",
+          "category": "specialty"
+        },
+        {
+          "custom_name": "Trial Components",
+          "quantity": 1,
+          "size": "Per templating",
+          "notes": "Femoral, tibial, and poly insert",
+          "category": "implants"
+        },
+        {
+          "custom_name": "Bone Cement",
+          "quantity": 2,
+          "size": "40g packets",
+          "notes": "Antibiotic-loaded if protocol",
+          "category": "supplies"
+        },
+        {
+          "instrument_name": "Hemovac Drain",
+          "quantity": 1,
+          "size": "10mm",
+          "notes": "For post-op drainage",
+          "category": "supplies"
+        }
+      ]
+    },
+    {
+      "title": "Total Hip Arthroplasty",
+      "surgeon_name": "Template",
+      "procedure_name": "Total Hip Replacement",
+      "specialty": "Orthopedic",
+      "general_notes": "Approach dependent on surgeon preference (posterior, anterior, lateral). Femoral head dislocated and removed, acetabulum reamed, cup placed. Femur prepared with broaches, stem inserted. Trial reduction performed before final implants.",
+      "setup_notes": "Patient positioned per approach. Power equipment ready. Have all implant sizes available. Cement or press-fit per plan.",
+      "items": [
+        {
+          "instrument_name": "#10 Scalpel Blade",
+          "quantity": 2,
+          "size": null,
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Bovie Electrocautery Pencil",
+          "quantity": 1,
+          "size": null,
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Gelpi Retractor",
+          "quantity": 2,
+          "size": null,
+          "notes": "For muscle retraction",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Weitlaner Retractor",
+          "quantity": 2,
+          "size": null,
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Periosteal Elevator",
+          "quantity": 2,
+          "size": null,
+          "notes": "Cobb elevator",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Osteotome",
+          "quantity": 3,
+          "size": "Various widths",
+          "notes": "For femoral neck cut",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Sagittal Saw",
+          "quantity": 1,
+          "size": null,
+          "notes": "For neck osteotomy",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Rongeur",
+          "quantity": 2,
+          "size": null,
+          "notes": "For osteophyte removal",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Bone Curette",
+          "quantity": 2,
+          "size": null,
+          "notes": "For acetabular preparation",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Acetabular Reamers",
+          "quantity": 1,
+          "size": "Set",
+          "notes": "Sequential sizes per templating",
+          "category": "specialty"
+        },
+        {
+          "custom_name": "Femoral Broaches",
+          "quantity": 1,
+          "size": "Set",
+          "notes": "Sequential sizes",
+          "category": "specialty"
+        },
+        {
+          "custom_name": "Acetabular Cup Trials",
+          "quantity": 1,
+          "size": "Per templating",
+          "notes": null,
+          "category": "implants"
+        },
+        {
+          "custom_name": "Femoral Stem Trials",
+          "quantity": 1,
+          "size": "Per templating",
+          "notes": null,
+          "category": "implants"
+        },
+        {
+          "custom_name": "Femoral Head Trials",
+          "quantity": 1,
+          "size": "Various neck lengths",
+          "notes": "28mm, 32mm, 36mm options",
+          "category": "implants"
+        },
+        {
+          "instrument_name": "Hemovac Drain",
+          "quantity": 1,
+          "size": null,
+          "notes": "If used per protocol",
+          "category": "supplies"
+        }
+      ]
+    },
+    {
+      "title": "Cesarean Section",
+      "surgeon_name": "Template",
+      "procedure_name": "Cesarean Delivery",
+      "specialty": "OB/GYN",
+      "general_notes": "Low transverse (Pfannenstiel) skin incision. Sharp and blunt dissection to peritoneum. Bladder flap created, low transverse uterine incision. Deliver infant, placenta. Close uterus in layers. Count x3: before start, before closure, at skin.",
+      "setup_notes": "Mayo stand: Scalpel, Bovie, Bandage scissors (for cord), cord clamp, bulb suction. Baby warmer ready. Pitocin available.",
+      "items": [
+        {
+          "instrument_name": "#10 Scalpel Blade",
+          "quantity": 2,
+          "size": null,
+          "notes": "One for skin, one for uterus",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Bovie Electrocautery Pencil",
+          "quantity": 1,
+          "size": null,
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Army-Navy Retractor",
+          "quantity": 2,
+          "size": null,
+          "notes": "Initial exposure",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Richardson Retractor",
+          "quantity": 2,
+          "size": null,
+          "notes": "For fascia and muscle",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Bladder Blade",
+          "quantity": 1,
+          "size": null,
+          "notes": "Part of Balfour or separate",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Balfour Retractor",
+          "quantity": 1,
+          "size": null,
+          "notes": "Self-retaining for exposure",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Debakey Tissue Forceps",
+          "quantity": 2,
+          "size": null,
+          "notes": "For tissue handling",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Allis Tissue Forceps",
+          "quantity": 4,
+          "size": null,
+          "notes": "For uterine edge",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Kocher Forceps",
+          "quantity": 2,
+          "size": null,
+          "notes": "For fascia corners",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Bandage Scissors",
+          "quantity": 1,
+          "size": null,
+          "notes": "For cutting cord",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Metzenbaum Scissors",
+          "quantity": 1,
+          "size": null,
+          "notes": "For dissection",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Mayo-Hegar Needle Holder",
+          "quantity": 2,
+          "size": null,
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Pennington Forceps",
+          "quantity": 2,
+          "size": null,
+          "notes": "For uterine angles",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "0 Chromic or Vicryl",
+          "quantity": 2,
+          "size": "CT-1 needle",
+          "notes": "For uterine closure",
+          "category": "sutures"
+        },
+        {
+          "custom_name": "2-0 Vicryl",
+          "quantity": 2,
+          "size": "CT-1 needle",
+          "notes": "For peritoneum and fascia",
+          "category": "sutures"
+        },
+        {
+          "custom_name": "Cord Clamp",
+          "quantity": 2,
+          "size": null,
+          "notes": "For umbilical cord",
+          "category": "supplies"
+        },
+        {
+          "custom_name": "Bulb Suction",
+          "quantity": 1,
+          "size": null,
+          "notes": "For infant suctioning",
+          "category": "supplies"
+        }
+      ]
+    },
+    {
+      "title": "Laparoscopic Hysterectomy",
+      "surgeon_name": "Template",
+      "procedure_name": "Total Laparoscopic Hysterectomy",
+      "specialty": "OB/GYN",
+      "general_notes": "Patient in dorsal lithotomy with arms tucked. Uterine manipulator placed vaginally. Four-port technique typical. Identify ureters, divide round ligaments, develop bladder flap, secure uterine vessels, create colpotomy, remove specimen vaginally.",
+      "setup_notes": "Vaginal tray for manipulator placement. Lap tray with energy device, graspers, scissors. Suction irrigator ready.",
+      "items": [
+        {
+          "instrument_name": "Graves Speculum",
+          "quantity": 1,
+          "size": null,
+          "notes": "For manipulator placement",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Tenaculum",
+          "quantity": 1,
+          "size": null,
+          "notes": "Single tooth for cervix",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Uterine Sound",
+          "quantity": 1,
+          "size": null,
+          "notes": "Measure uterine depth",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Hegar Dilators",
+          "quantity": 1,
+          "size": "Set",
+          "notes": "For manipulator",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Uterine Manipulator",
+          "quantity": 1,
+          "size": "Per uterine size",
+          "notes": "RUMI or similar with colpotomy cup",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Veress Needle",
+          "quantity": 1,
+          "size": null,
+          "notes": "For insufflation",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Trocar 10/12mm",
+          "quantity": 2,
+          "size": "12mm",
+          "notes": "Camera and specimen extraction",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Trocar 5mm",
+          "quantity": 2,
+          "size": "5mm",
+          "notes": "Working ports",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Endoscopic Camera",
+          "quantity": 1,
+          "size": "10mm, 0 or 30 degree",
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Laparoscopic Grasper",
+          "quantity": 2,
+          "size": "5mm",
+          "notes": "Atraumatic jaws",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "LigaSure Vessel Sealing Device",
+          "quantity": 1,
+          "size": "5mm",
+          "notes": "Or Harmonic - for vessel sealing and cutting",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Laparoscopic Scissors",
+          "quantity": 1,
+          "size": "5mm",
+          "notes": "For colpotomy completion",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Suction Irrigator",
+          "quantity": 1,
+          "size": "5mm",
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "custom_name": "0 Vicryl on CT-1",
+          "quantity": 2,
+          "size": null,
+          "notes": "For vaginal cuff closure (if laparoscopic)",
+          "category": "sutures"
+        }
+      ]
+    },
+    {
+      "title": "Inguinal Hernia Repair - Open",
+      "surgeon_name": "Template",
+      "procedure_name": "Lichtenstein Tension-Free Hernia Repair",
+      "specialty": "General Surgery",
+      "general_notes": "Groin incision over inguinal canal. External oblique opened. Cord structures identified and protected. Hernia sac reduced or ligated. Polypropylene mesh placed posterior to cord, sutured to inguinal ligament and conjoint tendon.",
+      "setup_notes": "Mayo stand: Scalpel, Bovie, Metz, self-retaining retractor. Mesh on back table. 2-0 Prolene for mesh fixation.",
+      "items": [
+        {
+          "instrument_name": "#15 Scalpel Blade",
+          "quantity": 1,
+          "size": null,
+          "notes": "For skin and dissection",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Bovie Electrocautery Pencil",
+          "quantity": 1,
+          "size": null,
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Metzenbaum Scissors",
+          "quantity": 1,
+          "size": "7 inch",
+          "notes": "For dissection",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Army-Navy Retractor",
+          "quantity": 2,
+          "size": null,
+          "notes": "Initial exposure",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Weitlaner Retractor",
+          "quantity": 1,
+          "size": null,
+          "notes": "Self-retaining",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Adson Tissue Forceps",
+          "quantity": 2,
+          "size": null,
+          "notes": "With teeth for skin",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Debakey Tissue Forceps",
+          "quantity": 1,
+          "size": null,
+          "notes": "For cord handling",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Kelly Hemostatic Forceps",
+          "quantity": 4,
+          "size": null,
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Right Angle Clamp",
+          "quantity": 1,
+          "size": null,
+          "notes": "For cord dissection",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Penrose Drain",
+          "quantity": 1,
+          "size": "1/4 inch",
+          "notes": "As cord retractor",
+          "category": "supplies"
+        },
+        {
+          "instrument_name": "Mayo-Hegar Needle Holder",
+          "quantity": 2,
+          "size": null,
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Polypropylene Mesh",
+          "quantity": 1,
+          "size": "3x5 inch or larger",
+          "notes": "Flat mesh for Lichtenstein",
+          "category": "implants"
+        },
+        {
+          "custom_name": "2-0 Prolene",
+          "quantity": 2,
+          "size": "SH needle",
+          "notes": "For mesh fixation",
+          "category": "sutures"
+        },
+        {
+          "custom_name": "3-0 Vicryl",
+          "quantity": 2,
+          "size": "SH needle",
+          "notes": "For external oblique closure",
+          "category": "sutures"
+        }
+      ]
+    },
+    {
+      "title": "Carpal Tunnel Release",
+      "surgeon_name": "Template",
+      "procedure_name": "Open Carpal Tunnel Release",
+      "specialty": "Orthopedic",
+      "general_notes": "Patient supine with arm on hand table. Local anesthesia or MAC. Small palmar incision. Transverse carpal ligament identified and divided longitudinally. Median nerve visualized and decompressed.",
+      "setup_notes": "Hand table with arm board. Fine instruments on Mayo. Loupe magnification available. Tourniquet optional.",
+      "items": [
+        {
+          "instrument_name": "#15 Scalpel Blade",
+          "quantity": 1,
+          "size": null,
+          "notes": "For skin incision",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Iris Scissors",
+          "quantity": 1,
+          "size": null,
+          "notes": "For fine dissection",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Metzenbaum Scissors",
+          "quantity": 1,
+          "size": "5.5 inch",
+          "notes": "For ligament division",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Adson Tissue Forceps",
+          "quantity": 2,
+          "size": null,
+          "notes": "One toothed, one non-toothed",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Senn Retractor",
+          "quantity": 2,
+          "size": null,
+          "notes": "For skin edge retraction",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Skin Hook",
+          "quantity": 2,
+          "size": null,
+          "notes": "For delicate retraction",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Mosquito Hemostatic Forceps",
+          "quantity": 4,
+          "size": null,
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Webster Needle Holder",
+          "quantity": 1,
+          "size": null,
+          "notes": "For fine suturing",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Bipolar Forceps",
+          "quantity": 1,
+          "size": null,
+          "notes": "For hemostasis",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Freer Elevator",
+          "quantity": 1,
+          "size": null,
+          "notes": "To protect median nerve during release",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "4-0 Nylon",
+          "quantity": 1,
+          "size": "PS-2 needle",
+          "notes": "For skin closure",
+          "category": "sutures"
+        },
+        {
+          "custom_name": "1% Lidocaine with Epi",
+          "quantity": 1,
+          "size": "10mL",
+          "notes": "For local anesthesia",
+          "category": "supplies"
+        }
+      ]
+    },
+    {
+      "title": "Laparoscopic Appendectomy",
+      "surgeon_name": "Template",
+      "procedure_name": "Laparoscopic Appendectomy",
+      "specialty": "General Surgery",
+      "general_notes": "Three-port technique. Camera at umbilicus. Appendix identified, mesoappendix divided with energy or clips. Appendix base secured with endoloops or stapler. Appendix removed in specimen bag.",
+      "setup_notes": "Standard lap tray. Have stapler available if needed. Specimen bag ready.",
+      "items": [
+        {
+          "instrument_name": "Veress Needle",
+          "quantity": 1,
+          "size": null,
+          "notes": "For insufflation",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Trocar 10/12mm",
+          "quantity": 1,
+          "size": "12mm",
+          "notes": "Umbilical - camera port",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Trocar 5mm",
+          "quantity": 2,
+          "size": "5mm",
+          "notes": "Suprapubic and LLQ",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Endoscopic Camera",
+          "quantity": 1,
+          "size": "5 or 10mm",
+          "notes": "0 or 30 degree",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Laparoscopic Grasper",
+          "quantity": 2,
+          "size": "5mm",
+          "notes": "Atraumatic, one for appendix, one for mesoappendix",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "LigaSure Vessel Sealing Device",
+          "quantity": 1,
+          "size": "5mm",
+          "notes": "For mesoappendix - or use clips",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Laparoscopic Scissors",
+          "quantity": 1,
+          "size": "5mm",
+          "notes": "If not using energy device",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Laparoscopic Clip Applier",
+          "quantity": 1,
+          "size": "5mm",
+          "notes": "Alternative for mesoappendix",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Endoloop",
+          "quantity": 3,
+          "size": "0 PDS",
+          "notes": "Two proximal, one distal on appendix base",
+          "category": "sutures"
+        },
+        {
+          "instrument_name": "Specimen Retrieval Bag",
+          "quantity": 1,
+          "size": "Small",
+          "notes": "For appendix removal",
+          "category": "supplies"
+        },
+        {
+          "custom_name": "Suction Irrigator",
+          "quantity": 1,
+          "size": "5mm",
+          "notes": "For washout if needed",
+          "category": "instruments"
+        }
+      ]
+    },
+    {
+      "title": "Breast Lumpectomy",
+      "surgeon_name": "Template",
+      "procedure_name": "Partial Mastectomy / Lumpectomy",
+      "specialty": "General Surgery",
+      "general_notes": "Patient supine with arm extended on board. Incision over lesion or periareolar. Lesion excised with margin of normal tissue. Specimen oriented with sutures/clips. Cavity may be marked with clips. Hemostasis and layered closure.",
+      "setup_notes": "Specimen container with formalin. Orientation sutures ready. Specimen x-ray if needed. Clips for cavity marking.",
+      "items": [
+        {
+          "instrument_name": "#15 Scalpel Blade",
+          "quantity": 1,
+          "size": null,
+          "notes": "For skin incision",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Bovie Electrocautery Pencil",
+          "quantity": 1,
+          "size": null,
+          "notes": "For dissection and hemostasis",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Metzenbaum Scissors",
+          "quantity": 1,
+          "size": null,
+          "notes": "For dissection",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Army-Navy Retractor",
+          "quantity": 2,
+          "size": null,
+          "notes": "For initial exposure",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Rake Retractor",
+          "quantity": 2,
+          "size": null,
+          "notes": "For skin edge retraction",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Breast Retractor",
+          "quantity": 1,
+          "size": null,
+          "notes": "Lighted if available",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Adson Tissue Forceps",
+          "quantity": 2,
+          "size": null,
+          "notes": "For tissue handling",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Allis Tissue Forceps",
+          "quantity": 2,
+          "size": null,
+          "notes": "For specimen handling",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Kelly Hemostatic Forceps",
+          "quantity": 4,
+          "size": null,
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Mayo-Hegar Needle Holder",
+          "quantity": 2,
+          "size": null,
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Silk Sutures for Orientation",
+          "quantity": 3,
+          "size": "2-0 or 3-0",
+          "notes": "Short = superior, Long = lateral, etc per protocol",
+          "category": "sutures"
+        },
+        {
+          "custom_name": "Titanium Clips",
+          "quantity": 1,
+          "size": null,
+          "notes": "For cavity marking for radiation",
+          "category": "supplies"
+        },
+        {
+          "custom_name": "3-0 Vicryl",
+          "quantity": 2,
+          "size": "SH needle",
+          "notes": "For deep closure",
+          "category": "sutures"
+        },
+        {
+          "custom_name": "4-0 Monocryl",
+          "quantity": 1,
+          "size": "PS-2 needle",
+          "notes": "For subcuticular closure",
+          "category": "sutures"
+        }
+      ]
+    },
+    {
+      "title": "Rotator Cuff Repair - Arthroscopic",
+      "surgeon_name": "Template",
+      "procedure_name": "Arthroscopic Rotator Cuff Repair",
+      "specialty": "Orthopedic",
+      "general_notes": "Patient in beach chair or lateral decubitus. Diagnostic arthroscopy first. Subacromial decompression if needed. Cuff tear debrided, footprint prepared. Suture anchors placed, cuff repaired with suture passing and knot tying.",
+      "setup_notes": "Arthroscopy tower, fluid pump, shaver. Suture anchors and passing instruments ready. Beach chair positioning equipment.",
+      "items": [
+        {
+          "instrument_name": "Endoscopic Camera",
+          "quantity": 1,
+          "size": "4mm, 30 degree",
+          "notes": "Arthroscope for shoulder",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Arthroscopy Cannulas",
+          "quantity": 3,
+          "size": "8mm",
+          "notes": "Posterior viewing, lateral and anterior working",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Arthroscopic Shaver",
+          "quantity": 1,
+          "size": "4.5mm",
+          "notes": "Full radius blade",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Arthroscopic Burr",
+          "quantity": 1,
+          "size": "4.0mm",
+          "notes": "For footprint preparation",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Arthroscopic Grasper",
+          "quantity": 2,
+          "size": null,
+          "notes": "For tissue manipulation",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Suture Anchor",
+          "quantity": 3,
+          "size": "5.5mm",
+          "notes": "Double or triple loaded, number based on tear",
+          "category": "implants"
+        },
+        {
+          "custom_name": "Suture Passer",
+          "quantity": 1,
+          "size": null,
+          "notes": "Scorpion, Viper, or similar",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Arthroscopic Knot Pusher",
+          "quantity": 1,
+          "size": null,
+          "notes": "For knot tying",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Suture Cutter",
+          "quantity": 1,
+          "size": null,
+          "notes": "Arthroscopic suture cutter",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Probe",
+          "quantity": 1,
+          "size": null,
+          "notes": "For tissue assessment",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Switching Stick",
+          "quantity": 2,
+          "size": null,
+          "notes": "For cannula exchange",
+          "category": "instruments"
+        }
+      ]
+    },
+    {
+      "title": "Tonsillectomy and Adenoidectomy",
+      "surgeon_name": "Template",
+      "procedure_name": "Tonsillectomy & Adenoidectomy",
+      "specialty": "ENT",
+      "general_notes": "Patient supine with shoulder roll, neck extended. Mouth held open with gag. Tonsils dissected or removed with electrocautery. Adenoids removed with curette or suction cautery. Hemostasis critical.",
+      "setup_notes": "Headlight positioned. Mouth gag ready. Suction cautery and adenoid curettes on Mayo.",
+      "items": [
+        {
+          "custom_name": "Crowe-Davis Mouth Gag",
+          "quantity": 1,
+          "size": null,
+          "notes": "Self-retaining mouth gag",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Tonsil Forceps",
+          "quantity": 2,
+          "size": null,
+          "notes": "For grasping tonsil",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Tonsil Snare",
+          "quantity": 1,
+          "size": null,
+          "notes": "If cold dissection technique",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Bovie Electrocautery Pencil",
+          "quantity": 1,
+          "size": null,
+          "notes": "With protected tip for dissection",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Metzenbaum Scissors",
+          "quantity": 1,
+          "size": null,
+          "notes": "For dissection",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Adenoid Curette",
+          "quantity": 2,
+          "size": "Small and Large",
+          "notes": "Barnhill or similar",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Adenoid Suction Cautery",
+          "quantity": 1,
+          "size": null,
+          "notes": "Combination suction and cautery",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Yankauer Suction Tip",
+          "quantity": 1,
+          "size": null,
+          "notes": "For oral suctioning",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Laryngeal Mirror",
+          "quantity": 1,
+          "size": null,
+          "notes": "To visualize adenoids",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Tonsil Sponges",
+          "quantity": 10,
+          "size": null,
+          "notes": "For hemostasis and packing",
+          "category": "supplies"
+        },
+        {
+          "custom_name": "Afrin (Oxymetazoline)",
+          "quantity": 1,
+          "size": null,
+          "notes": "For topical vasoconstriction",
+          "category": "supplies"
+        }
+      ]
+    },
+    {
+      "title": "Thyroidectomy",
+      "surgeon_name": "Template",
+      "procedure_name": "Total Thyroidectomy",
+      "specialty": "General Surgery",
+      "general_notes": "Patient supine with neck extended. Low collar incision. Strap muscles divided or retracted. Thyroid mobilized, vessels ligated, recurrent laryngeal nerve identified and preserved. Parathyroids identified and preserved.",
+      "setup_notes": "Nerve monitor if used. Energy device available. Have frozen section capability. Calcium available postop.",
+      "items": [
+        {
+          "instrument_name": "#15 Scalpel Blade",
+          "quantity": 1,
+          "size": null,
+          "notes": "For skin incision",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Bovie Electrocautery Pencil",
+          "quantity": 1,
+          "size": null,
+          "notes": null,
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Harmonic Scalpel",
+          "quantity": 1,
+          "size": null,
+          "notes": "For vessel sealing - reduces bleeding",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Army-Navy Retractor",
+          "quantity": 2,
+          "size": null,
+          "notes": "Initial exposure",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Roux Retractor",
+          "quantity": 2,
+          "size": null,
+          "notes": "For deeper exposure",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Thyroid Retractor",
+          "quantity": 1,
+          "size": null,
+          "notes": "Greene or Lahey retractor",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Lahey Forceps",
+          "quantity": 2,
+          "size": null,
+          "notes": "For thyroid grasping",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Right Angle Clamp",
+          "quantity": 2,
+          "size": null,
+          "notes": "For vessel dissection",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Schnidt Forceps",
+          "quantity": 4,
+          "size": null,
+          "notes": "For vessel clamping",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Metzenbaum Scissors",
+          "quantity": 1,
+          "size": null,
+          "notes": "For dissection",
+          "category": "instruments"
+        },
+        {
+          "instrument_name": "Debakey Tissue Forceps",
+          "quantity": 2,
+          "size": null,
+          "notes": "For tissue handling",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Nerve Integrity Monitor",
+          "quantity": 1,
+          "size": null,
+          "notes": "For RLN monitoring if used",
+          "category": "specialty"
+        },
+        {
+          "instrument_name": "Jackson-Pratt Drain",
+          "quantity": 1,
+          "size": "10mm",
+          "notes": "If drain placed",
+          "category": "supplies"
+        },
+        {
+          "custom_name": "3-0 Vicryl",
+          "quantity": 2,
+          "size": "SH needle",
+          "notes": "For strap muscle closure",
+          "category": "sutures"
+        },
+        {
+          "custom_name": "4-0 Monocryl",
+          "quantity": 1,
+          "size": "PS-2 needle",
+          "notes": "For subcuticular skin closure",
+          "category": "sutures"
+        }
+      ]
+    },
+    {
+      "title": "Cataract Extraction with IOL",
+      "surgeon_name": "Template",
+      "procedure_name": "Phacoemulsification with IOL Implantation",
+      "specialty": "Ophthalmology",
+      "general_notes": "Topical anesthesia. Corneal or limbal incision. Continuous curvilinear capsulorhexis. Hydrodissection. Phacoemulsification of lens nucleus. Cortex removal. IOL placement in capsular bag. Wound hydration.",
+      "setup_notes": "Microscope positioned. Phaco machine calibrated. IOL verified against measurements. BSS on field.",
+      "items": [
+        {
+          "custom_name": "Lid Speculum",
+          "quantity": 1,
+          "size": null,
+          "notes": "Wire or solid blade",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Keratome",
+          "quantity": 1,
+          "size": "2.4-2.75mm",
+          "notes": "For main incision",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Paracentesis Blade",
+          "quantity": 1,
+          "size": "15 degree",
+          "notes": "For side port",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Capsulorhexis Forceps",
+          "quantity": 1,
+          "size": null,
+          "notes": "Utrata or similar",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Cystotome",
+          "quantity": 1,
+          "size": null,
+          "notes": "For capsule puncture",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Phaco Handpiece",
+          "quantity": 1,
+          "size": null,
+          "notes": "With appropriate tip",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "I/A Handpiece",
+          "quantity": 1,
+          "size": null,
+          "notes": "Irrigation/Aspiration for cortex removal",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "IOL Injector",
+          "quantity": 1,
+          "size": null,
+          "notes": "Matched to IOL system",
+          "category": "instruments"
+        },
+        {
+          "custom_name": "Intraocular Lens",
+          "quantity": 1,
+          "size": "Per calculations",
+          "notes": "Verify power before opening",
+          "category": "implants"
+        },
+        {
+          "custom_name": "BSS (Balanced Salt Solution)",
+          "quantity": 1,
+          "size": "500mL",
+          "notes": "For irrigation",
+          "category": "supplies"
+        },
+        {
+          "custom_name": "Viscoelastic",
+          "quantity": 2,
+          "size": null,
+          "notes": "Cohesive and dispersive types",
+          "category": "supplies"
+        },
+        {
+          "custom_name": "Intracameral Antibiotics",
+          "quantity": 1,
+          "size": null,
+          "notes": "Per surgeon protocol",
+          "category": "supplies"
+        }
+      ]
+    }
+  ]
+}

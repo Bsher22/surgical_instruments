@@ -1,0 +1,186 @@
+{
+  "google_play_console": {
+    "app_name": "SurgicalPrep - Instrument Study",
+    "default_language": "en-US",
+    "category": "Medical",
+    "content_rating": "Everyone",
+    "target_audience": "18+",
+    "pricing": "Free with in-app purchases"
+  },
+  "store_listing": {
+    "title": "SurgicalPrep - Instrument Study",
+    "short_description": "Master surgical instruments with flashcards, quizzes & preference cards. For surgical techs & OR nurses.",
+    "full_description": "SurgicalPrep is the ultimate study companion for surgical technologists, OR nurses, and surgical technology students. Master surgical instruments, create preference cards, and track your learning progress with our comprehensive study tools.\n\n📚 INSTRUMENT DATABASE\n• Browse 200+ surgical instruments across all specialties\n• High-quality images with zoom capability\n• Detailed descriptions, uses, and handling notes\n• Full-text search and category filtering\n• Common procedures and aliases for each instrument\n\n📋 PREFERENCE CARDS\n• Create digital preference cards for any procedure\n• Add instruments from our database or custom items\n• Organize by surgeon, procedure, and specialty\n• Attach setup photos for visual reference\n• Duplicate and customize existing cards\n• Access template cards for common procedures\n\n🧠 STUDY TOOLS\n• Flashcard mode with swipe-to-learn interface\n• Multiple choice quizzes with instant feedback\n• Spaced repetition algorithm for optimal retention\n• Track your progress and study streaks\n• Review instruments due for practice\n\n✨ PREMIUM FEATURES\n• Unlimited preference cards (Free: 5 cards)\n• Unlimited daily quizzes (Free: 3/day)\n• Access to all instrument details\n• Priority support\n\nPerfect for:\n• Surgical Technologists preparing for certification\n• CST exam preparation\n• OR Nurses expanding their knowledge\n• Surgical Technology students\n• Healthcare professionals in the operating room\n\nStart your surgical prep journey today!\n\nQuestions or feedback? Contact us at support@surgicalprep.app"
+  },
+  "contact_details": {
+    "email": "support@surgicalprep.app",
+    "website": "https://surgicalprep.app",
+    "privacy_policy": "https://surgicalprep.app/privacy"
+  },
+  "content_rating_questionnaire": {
+    "violence": "None",
+    "sexual_content": "None",
+    "profanity": "None",
+    "drugs_alcohol_tobacco": "None",
+    "gambling": "None",
+    "user_generated_content": "Yes - Users can create preference cards and notes",
+    "shares_location": "No",
+    "contains_ads": "No",
+    "in_app_purchases": "Yes"
+  },
+  "data_safety": {
+    "data_collected": [
+      {
+        "category": "Personal info",
+        "data_types": ["Name", "Email address"],
+        "purpose": ["App functionality", "Account management"],
+        "optional": false,
+        "shared_with_third_parties": false,
+        "encrypted_in_transit": true,
+        "user_can_request_deletion": true
+      },
+      {
+        "category": "Photos and videos",
+        "data_types": ["Photos"],
+        "purpose": ["App functionality - preference card setup photos"],
+        "optional": true,
+        "shared_with_third_parties": false,
+        "encrypted_in_transit": true,
+        "user_can_request_deletion": true,
+        "notes": "Users can optionally add setup photos to their preference cards"
+      },
+      {
+        "category": "App activity",
+        "data_types": ["App interactions", "In-app search history"],
+        "purpose": ["Analytics", "App functionality"],
+        "optional": false,
+        "shared_with_third_parties": false,
+        "encrypted_in_transit": true,
+        "user_can_request_deletion": true
+      },
+      {
+        "category": "App info and performance",
+        "data_types": ["Crash logs", "Diagnostics"],
+        "purpose": ["Analytics", "Developer communications"],
+        "optional": false,
+        "shared_with_third_parties": true,
+        "third_party_name": "Sentry (error monitoring)",
+        "encrypted_in_transit": true,
+        "user_can_request_deletion": false
+      },
+      {
+        "category": "Financial info",
+        "data_types": ["Purchase history"],
+        "purpose": ["App functionality - subscription management"],
+        "optional": true,
+        "shared_with_third_parties": true,
+        "third_party_name": "Stripe (payment processing)",
+        "encrypted_in_transit": true,
+        "user_can_request_deletion": true,
+        "notes": "Credit card info is processed by Stripe; we do not store payment details"
+      }
+    ],
+    "security_practices": {
+      "data_encrypted_in_transit": true,
+      "data_deletion_request": true,
+      "deletion_mechanism": "Users can request account deletion in app settings or by emailing support@surgicalprep.app"
+    }
+  },
+  "graphics": {
+    "feature_graphic": {
+      "size": "1024 x 500",
+      "format": "PNG or JPEG",
+      "description": "Required promotional image displayed at top of store listing"
+    },
+    "icon": {
+      "size": "512 x 512",
+      "format": "PNG",
+      "requirements": ["32-bit PNG with alpha", "No rounded corners"]
+    },
+    "screenshots": {
+      "phone": {
+        "min_size": "320 x 320",
+        "max_size": "3840 x 3840",
+        "recommended": "1080 x 1920",
+        "required": 2,
+        "maximum": 8
+      },
+      "tablet_7_inch": {
+        "recommended": "1200 x 1920",
+        "required": 0,
+        "maximum": 8
+      },
+      "tablet_10_inch": {
+        "recommended": "1920 x 1200",
+        "required": 0,
+        "maximum": 8
+      }
+    },
+    "screenshot_content": [
+      "1_instrument_browser.png - Instrument list with search and filters",
+      "2_instrument_detail.png - Detailed instrument view with image",
+      "3_preference_cards.png - User's preference cards list",
+      "4_card_editor.png - Creating/editing a preference card",
+      "5_flashcard_study.png - Flashcard study mode",
+      "6_quiz_session.png - Multiple choice quiz",
+      "7_quiz_results.png - Quiz results and statistics",
+      "8_profile_progress.png - User profile and progress tracking"
+    ]
+  },
+  "release_management": {
+    "release_type": "Production",
+    "rollout_percentage": 100,
+    "countries": "All countries",
+    "release_notes": "Initial release of SurgicalPrep!\n\n• Browse 200+ surgical instruments with detailed information\n• Create and manage preference cards\n• Study with flashcards and multiple choice quizzes\n• Track your learning progress\n• Spaced repetition for optimal retention"
+  },
+  "testing": {
+    "internal_testing": {
+      "enabled": true,
+      "testers": "List of email addresses for internal testers"
+    },
+    "closed_testing": {
+      "enabled": true,
+      "track_name": "Beta",
+      "testers": "surgical-tech-beta-testers@googlegroups.com"
+    },
+    "open_testing": {
+      "enabled": false,
+      "notes": "Consider open testing after closed beta feedback"
+    }
+  },
+  "in_app_products": {
+    "subscriptions": [
+      {
+        "product_id": "premium_monthly",
+        "name": "Premium Monthly",
+        "description": "Unlock unlimited preference cards, unlimited quizzes, and full instrument details.",
+        "price": "$4.99",
+        "billing_period": "Monthly",
+        "free_trial": "7 days",
+        "grace_period": "7 days"
+      },
+      {
+        "product_id": "premium_annual",
+        "name": "Premium Annual",
+        "description": "Save 50%! Unlock unlimited preference cards, unlimited quizzes, and full instrument details for a full year.",
+        "price": "$29.99",
+        "billing_period": "Yearly",
+        "free_trial": "7 days",
+        "grace_period": "7 days"
+      }
+    ],
+    "subscription_group": "Premium Access"
+  },
+  "developer_declaration": {
+    "ads": false,
+    "app_is_news": false,
+    "government_app": false,
+    "financial_features": false,
+    "health_features": {
+      "is_health_app": false,
+      "stores_health_info": false,
+      "connects_health_devices": false,
+      "notes": "Educational app only - does not store or process patient health information"
+    }
+  }
+}

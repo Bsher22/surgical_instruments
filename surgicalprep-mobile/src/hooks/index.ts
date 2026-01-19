@@ -21,3 +21,19 @@ export {
 
 // Re-export keyboard hook from UI
 export { useKeyboardVisible } from '../components/ui/KeyboardAvoidingWrapper';
+
+// Auth
+export { useAuth, usePremiumStatus } from './useAuth';
+
+// Instruments
+export {
+  useInstruments,
+  useInfiniteInstruments,
+  useInstrument,
+  useInstrumentSearch,
+  useCategories,
+  usePopularInstruments,
+  useRelatedInstruments,
+  useInstrumentsByIds,
+  instrumentKeys,
+} from './useInstruments';

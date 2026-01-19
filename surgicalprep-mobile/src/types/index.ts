@@ -149,6 +149,40 @@ export type UserRole =
   | 'surgical_tech_educator'
   | 'other';
 
+export interface RoleOption {
+  value: UserRole;
+  label: string;
+  description: string;
+}
+
+export const ROLE_OPTIONS: RoleOption[] = [
+  {
+    value: 'surgical_tech_student',
+    label: 'Surgical Tech Student',
+    description: 'Currently enrolled in a surgical technology program',
+  },
+  {
+    value: 'certified_surgical_tech',
+    label: 'Certified Surgical Tech',
+    description: 'CST or equivalent certification',
+  },
+  {
+    value: 'or_nurse',
+    label: 'OR Nurse',
+    description: 'Registered nurse working in the operating room',
+  },
+  {
+    value: 'surgical_tech_educator',
+    label: 'Surgical Tech Educator',
+    description: 'Instructor or professor in surgical technology',
+  },
+  {
+    value: 'other',
+    label: 'Other Healthcare Professional',
+    description: 'Other surgical or healthcare role',
+  },
+];
+
 export type SubscriptionTier = 'free' | 'premium';
 
 // ============================================

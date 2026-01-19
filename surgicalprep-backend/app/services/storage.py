@@ -20,19 +20,29 @@ class R2StorageService:
     def __init__(self):
         self.bucket_name = settings.R2_BUCKET_NAME
         self.public_url = settings.R2_PUBLIC_URL
+        self._client = None
 
-        # Initialize S3 client with R2 endpoint
-        self.client = boto3.client(
-            's3',
-            endpoint_url=f"https://{settings.R2_ACCOUNT_ID}.r2.cloudflarestorage.com",
-            aws_access_key_id=settings.R2_ACCESS_KEY_ID,
-            aws_secret_access_key=settings.R2_SECRET_ACCESS_KEY,
-            config=Config(
-                signature_version='s3v4',
-                retries={'max_attempts': 3, 'mode': 'standard'}
-            ),
-            region_name='auto',
-        )
+    @property
+    def client(self):
+        """Lazy initialization of S3 client."""
+        if self._client is None:
+            if not settings.R2_ACCOUNT_ID:
+                raise Exception(
+                    "R2 storage not configured. Please set R2_ACCOUNT_ID, "
+                    "R2_ACCESS_KEY_ID, and R2_SECRET_ACCESS_KEY environment variables."
+                )
+            self._client = boto3.client(
+                's3',
+                endpoint_url=f"https://{settings.R2_ACCOUNT_ID}.r2.cloudflarestorage.com",
+                aws_access_key_id=settings.R2_ACCESS_KEY_ID,
+                aws_secret_access_key=settings.R2_SECRET_ACCESS_KEY,
+                config=Config(
+                    signature_version='s3v4',
+                    retries={'max_attempts': 3, 'mode': 'standard'}
+                ),
+                region_name='auto',
+            )
+        return self._client
 
     def _generate_key(self, folder: str, filename: str, user_id: Optional[str] = None) -> str:
         """Generate a unique storage key for the file."""

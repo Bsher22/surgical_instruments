@@ -15,13 +15,13 @@ import { useRouter } from 'expo-router';
 // Components
 import { SearchBar } from '../../../src/components/SearchBar';
 import { CategoryChip } from '../../../src/components/CategoryChip';
-import {
-  InstrumentCard,
-  CARD_MARGIN,
-  NUM_COLUMNS,
-} from '../../../src/components/InstrumentCard';
-import { LoadingSkeleton, LoadingSkeletonRow } from '../../../src/components/LoadingSkeleton';
-import { NoSearchResults, NoInstruments, NetworkError } from '../../../src/components/EmptyState';
+import { InstrumentCard } from '../../../src/components/InstrumentCard';
+import { InstrumentListSkeleton, InstrumentCardSkeleton } from '../../../src/components/LoadingSkeleton';
+import { NoInstrumentsFound, EmptyState } from '../../../src/components/EmptyState';
+
+// Layout constants
+const CARD_MARGIN = 8;
+const NUM_COLUMNS = 2;
 
 // Hooks & Types
 import { useInfiniteInstruments } from '../../../src/hooks/useInstruments';
@@ -122,7 +122,7 @@ export default function InstrumentsListScreen() {
     if (!isFetchingNextPage) return null;
     return (
       <View style={styles.footerLoader}>
-        <LoadingSkeletonRow />
+        <InstrumentCardSkeleton />
       </View>
     );
   }, [isFetchingNextPage]);
@@ -130,19 +130,29 @@ export default function InstrumentsListScreen() {
   // Render empty state
   const renderEmpty = useCallback(() => {
     if (isLoading) return null;
-    
+
     if (hasActiveFilters) {
-      return <NoSearchResults onClear={handleClearFilters} />;
+      return <NoInstrumentsFound />;
     }
-    
-    return <NoInstruments />;
-  }, [isLoading, hasActiveFilters, handleClearFilters]);
+
+    return (
+      <EmptyState
+        icon="medical-outline"
+        title="No instruments"
+        message="Instruments will appear here once they are loaded"
+      />
+    );
+  }, [isLoading, hasActiveFilters]);
 
   // Render error state
   if (isError) {
     return (
       <SafeAreaView style={styles.container} edges={['top']}>
-        <NetworkError onRetry={() => refetch()} />
+        <EmptyState
+          icon="cloud-offline-outline"
+          title="Network Error"
+          message="Unable to load instruments. Please check your connection and try again."
+        />
       </SafeAreaView>
     );
   }
@@ -178,7 +188,7 @@ export default function InstrumentsListScreen() {
 
       {/* Instrument List */}
       {isLoading ? (
-        <LoadingSkeleton count={6} />
+        <InstrumentListSkeleton count={6} />
       ) : (
         <FlatList
           data={instruments}

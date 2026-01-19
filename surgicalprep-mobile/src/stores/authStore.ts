@@ -2,8 +2,16 @@ import { create } from 'zustand';
 import { Platform } from 'react-native';
 import axios from 'axios';
 
-// API base URL
-const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:8000';
+// API base URL - ensure it has a protocol
+const getApiBaseUrl = () => {
+  const url = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:8000';
+  // If URL doesn't start with http:// or https://, add https://
+  if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
+    return `https://${url}`;
+  }
+  return url;
+};
+const API_BASE_URL = getApiBaseUrl();
 
 // Platform-aware storage helper
 const secureStorage = {

@@ -1,5 +1,9 @@
 import { create } from 'zustand';
 import { Platform } from 'react-native';
+import axios from 'axios';
+
+// API base URL
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:8000';
 
 // Platform-aware storage helper
 const secureStorage = {
@@ -63,6 +67,7 @@ interface User {
 interface AuthState {
   user: User | null;
   token: string | null;
+  refreshToken: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
@@ -75,6 +80,7 @@ interface AuthActions {
   checkAuth: () => Promise<void>;
   checkAuthStatus: () => Promise<void>;
   setUser: (user: User) => void;
+  fetchUserProfile: () => Promise<void>;
 }
 
 interface RegisterData {
@@ -85,12 +91,20 @@ interface RegisterData {
   institution?: string;
 }
 
+interface TokenResponse {
+  access_token: string;
+  refresh_token: string;
+  token_type: string;
+}
+
 const TOKEN_KEY = 'auth_token';
+const REFRESH_TOKEN_KEY = 'auth_refresh_token';
 const USER_KEY = 'auth_user';
 
 export const useAuthStore = create<AuthState & AuthActions>((set, get) => ({
   user: null,
   token: null,
+  refreshToken: null,
   isAuthenticated: false,
   isLoading: true,
   error: null,
@@ -98,33 +112,104 @@ export const useAuthStore = create<AuthState & AuthActions>((set, get) => ({
   login: async (email: string, password: string) => {
     set({ isLoading: true, error: null });
     try {
-      // API call would go here
-      // const response = await api.auth.login({ email, password });
-      // await secureStorage.setItem(TOKEN_KEY, response.token);
-      // set({ user: response.user, token: response.token, isAuthenticated: true });
+      const response = await axios.post<TokenResponse>(`${API_BASE_URL}/api/auth/login`, {
+        email,
+        password,
+      });
 
-      // Placeholder for now
-      throw new Error('Not implemented - use actual API');
+      const { access_token, refresh_token } = response.data;
+
+      // Store tokens
+      await secureStorage.setItem(TOKEN_KEY, access_token);
+      await secureStorage.setItem(REFRESH_TOKEN_KEY, refresh_token);
+
+      set({
+        token: access_token,
+        refreshToken: refresh_token,
+        isAuthenticated: true,
+        isLoading: false,
+        error: null,
+      });
+
+      // Fetch user profile
+      await get().fetchUserProfile();
+
     } catch (error: any) {
-      set({ error: error.message, isLoading: false });
-      throw error;
+      const message = error.response?.data?.detail || error.message || 'Login failed';
+      set({ error: message, isLoading: false });
+      throw new Error(message);
     }
   },
 
   logout: async () => {
     await secureStorage.deleteItem(TOKEN_KEY);
+    await secureStorage.deleteItem(REFRESH_TOKEN_KEY);
     await secureStorage.deleteItem(USER_KEY);
-    set({ user: null, token: null, isAuthenticated: false });
+    set({ user: null, token: null, refreshToken: null, isAuthenticated: false });
   },
 
   register: async (data: RegisterData) => {
     set({ isLoading: true, error: null });
     try {
-      // API call would go here
-      throw new Error('Not implemented - use actual API');
+      const response = await axios.post<TokenResponse>(`${API_BASE_URL}/api/auth/signup`, {
+        email: data.email,
+        password: data.password,
+        full_name: data.name,
+        role: data.role,
+        institution: data.institution || null,
+      });
+
+      const { access_token, refresh_token } = response.data;
+
+      // Store tokens
+      await secureStorage.setItem(TOKEN_KEY, access_token);
+      await secureStorage.setItem(REFRESH_TOKEN_KEY, refresh_token);
+
+      set({
+        token: access_token,
+        refreshToken: refresh_token,
+        isAuthenticated: true,
+        isLoading: false,
+        error: null,
+      });
+
+      // Fetch user profile
+      await get().fetchUserProfile();
+
     } catch (error: any) {
-      set({ error: error.message, isLoading: false });
-      throw error;
+      const message = error.response?.data?.detail || error.message || 'Registration failed';
+      set({ error: message, isLoading: false });
+      throw new Error(message);
+    }
+  },
+
+  fetchUserProfile: async () => {
+    const token = get().token;
+    if (!token) return;
+
+    try {
+      const response = await axios.get(`${API_BASE_URL}/api/users/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const userData = response.data;
+      const user: User = {
+        id: userData.id,
+        email: userData.email,
+        name: userData.full_name || userData.name,
+        role: userData.role,
+        institution: userData.institution,
+        subscription_tier: userData.subscription_tier || 'free',
+        subscription_expires_at: userData.subscription_expires_at,
+      };
+
+      await secureStorage.setItem(USER_KEY, JSON.stringify(user));
+      set({ user });
+    } catch (error) {
+      console.error('Failed to fetch user profile:', error);
+      // Don't throw - user can still use the app with tokens
     }
   },
 
@@ -132,11 +217,26 @@ export const useAuthStore = create<AuthState & AuthActions>((set, get) => ({
     set({ isLoading: true });
     try {
       const token = await secureStorage.getItem(TOKEN_KEY);
+      const refreshToken = await secureStorage.getItem(REFRESH_TOKEN_KEY);
       const userJson = await secureStorage.getItem(USER_KEY);
 
-      if (token && userJson) {
-        const user = JSON.parse(userJson) as User;
-        set({ user, token, isAuthenticated: true, isLoading: false });
+      if (token) {
+        let user: User | null = null;
+        if (userJson) {
+          user = JSON.parse(userJson) as User;
+        }
+        set({
+          user,
+          token,
+          refreshToken,
+          isAuthenticated: true,
+          isLoading: false
+        });
+
+        // Try to refresh user profile in background
+        if (token) {
+          get().fetchUserProfile().catch(() => {});
+        }
       } else {
         set({ isLoading: false });
       }

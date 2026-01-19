@@ -1,6 +1,8 @@
 """
 Instruments endpoints: list, search, detail, categories.
 """
+import json
+from pathlib import Path
 from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import select, func, or_
@@ -17,6 +19,9 @@ from app.schemas.instrument import (
 )
 
 router = APIRouter()
+
+# Path to seed data
+SEED_DATA_PATH = Path(__file__).parent.parent.parent.parent / "scripts" / "data" / "instruments.json"
 
 
 @router.get("", response_model=PaginatedInstruments)
@@ -137,3 +142,47 @@ async def get_instrument(
         )
     
     return instrument
+
+
+@router.post("/seed", tags=["Admin"])
+async def seed_instruments(
+    db: AsyncSession = Depends(get_db),
+):
+    """Seed the database with sample instruments. Only works if database is empty."""
+    # Check if instruments already exist
+    result = await db.execute(select(func.count(Instrument.id)))
+    count = result.scalar() or 0
+
+    if count > 0:
+        return {"message": f"Database already has {count} instruments. Skipping seed.", "seeded": 0}
+
+    # Load seed data
+    if not SEED_DATA_PATH.exists():
+        raise HTTPException(status_code=500, detail="Seed data file not found")
+
+    with open(SEED_DATA_PATH, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    instruments_data = data.get("instruments", [])
+
+    # Insert instruments
+    seeded = 0
+    for item in instruments_data:
+        instrument = Instrument(
+            name=item["name"],
+            aliases=item.get("aliases", []),
+            category=item["category"],
+            description=item.get("description", ""),
+            primary_uses=item.get("primary_uses", []),
+            common_procedures=item.get("common_procedures", []),
+            handling_notes=item.get("handling_notes"),
+            image_url=item.get("image_url"),
+            thumbnail_url=item.get("thumbnail_url"),
+            is_premium=item.get("is_premium", False),
+        )
+        db.add(instrument)
+        seeded += 1
+
+    await db.commit()
+
+    return {"message": f"Successfully seeded {seeded} instruments", "seeded": seeded}

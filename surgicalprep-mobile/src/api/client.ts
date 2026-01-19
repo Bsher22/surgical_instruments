@@ -99,13 +99,13 @@ const createApiClient = (): AxiosInstance => {
 };
 
 // Singleton instance
-let apiClient: AxiosInstance | null = null;
+let apiClientInstance: AxiosInstance | null = null;
 
 export const getApiClient = (): AxiosInstance => {
-  if (!apiClient) {
-    apiClient = createApiClient();
+  if (!apiClientInstance) {
+    apiClientInstance = createApiClient();
   }
-  return apiClient;
+  return apiClientInstance;
 };
 
 // Token management

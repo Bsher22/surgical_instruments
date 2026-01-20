@@ -37,3 +37,6 @@ export {
   useInstrumentsByIds,
   instrumentKeys,
 } from './useInstruments';
+
+// Bookmarks
+export { useBookmarks, useInstrumentBookmark } from './useBookmarks';

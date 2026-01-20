@@ -76,9 +76,43 @@ export const fontWeights = {
   bold: '700' as const,
 };
 
+// Font sizes
+export const fontSizes = {
+  xxs: 10,
+  xs: 12,
+  sm: 14,
+  md: 16,
+  lg: 18,
+  xl: 20,
+  xxl: 24,
+  xxxl: 32,
+  display: 40,
+};
+
+// Line heights
+export const lineHeights = {
+  tight: 1.2,
+  normal: 1.5,
+  relaxed: 1.75,
+};
+
+// Letter spacing
+export const letterSpacingValues = {
+  tight: -0.5,
+  normal: 0,
+  wide: 0.5,
+  wider: 1,
+};
+
 export const typography = {
   // Font weights
   weights: fontWeights,
+  // Font sizes
+  sizes: fontSizes,
+  // Line heights
+  lineHeights: lineHeights,
+  // Letter spacing
+  letterSpacing: letterSpacingValues,
 
   // Headings
   h1: {

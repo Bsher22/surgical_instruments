@@ -10,7 +10,7 @@ import type {
   InstrumentSearchParams,
   InstrumentSearchResponse,
   InstrumentCategory,
-} from '../types/instruments';
+} from '../types/api/instruments';
 
 // Category count type for categories endpoint
 export interface CategoryCount {
@@ -33,7 +33,7 @@ export async function getInstruments(
   queryParams.set('limit', String(limit));
 
   const response = await apiClient.get<InstrumentListResponse>(
-    `/instruments?${queryParams.toString()}`
+    `/api/instruments?${queryParams.toString()}`
   );
 
   return response.data;
@@ -43,7 +43,7 @@ export async function getInstruments(
  * Get a single instrument by ID
  */
 export async function getInstrument(id: string): Promise<Instrument> {
-  const response = await apiClient.get<Instrument>(`/instruments/${id}`);
+  const response = await apiClient.get<Instrument>(`/api/instruments/${id}`);
   return response.data;
 }
 
@@ -55,7 +55,7 @@ export async function searchInstruments(
   limit: number = 10
 ): Promise<Instrument[]> {
   const response = await apiClient.get<Instrument[]>(
-    `/instruments/search?q=${encodeURIComponent(query)}&limit=${limit}`
+    `/api/instruments/search?q=${encodeURIComponent(query)}&limit=${limit}`
   );
   return response.data;
 }
@@ -81,7 +81,7 @@ export async function getBookmarkedInstruments(
   if (ids.length === 0) return [];
 
   const response = await apiClient.post<Instrument[]>(
-    '/instruments/batch',
+    '/api/instruments/batch',
     { ids }
   );
   return response.data;
@@ -91,7 +91,7 @@ export async function getBookmarkedInstruments(
  * Get all categories with instrument counts
  */
 export async function getCategories(): Promise<CategoryCount[]> {
-  const response = await apiClient.get<CategoryCount[]>('/instruments/categories');
+  const response = await apiClient.get<CategoryCount[]>('/api/instruments/categories');
   return response.data;
 }
 
@@ -101,7 +101,7 @@ export async function getCategories(): Promise<CategoryCount[]> {
 export async function getInstrumentsByIds(ids: string[]): Promise<Instrument[]> {
   if (ids.length === 0) return [];
 
-  const response = await apiClient.post<Instrument[]>('/instruments/batch', { ids });
+  const response = await apiClient.post<Instrument[]>('/api/instruments/batch', { ids });
   return response.data;
 }
 
@@ -109,7 +109,7 @@ export async function getInstrumentsByIds(ids: string[]): Promise<Instrument[]> 
  * Get popular/commonly studied instruments
  */
 export async function getPopularInstruments(limit: number = 10): Promise<Instrument[]> {
-  const response = await apiClient.get<Instrument[]>(`/instruments/popular?limit=${limit}`);
+  const response = await apiClient.get<Instrument[]>(`/api/instruments/popular?limit=${limit}`);
   return response.data;
 }
 
@@ -121,7 +121,7 @@ export async function getRelatedInstruments(
   limit: number = 5
 ): Promise<Instrument[]> {
   const response = await apiClient.get<Instrument[]>(
-    `/instruments/${id}/related?limit=${limit}`
+    `/api/instruments/${id}/related?limit=${limit}`
   );
   return response.data;
 }

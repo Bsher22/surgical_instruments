@@ -3,13 +3,21 @@ import { View, Text, StyleSheet, ViewStyle } from 'react-native';
 import { InstrumentCategory, CATEGORY_CONFIG } from '../../types/instrument';
 
 interface CategoryBadgeProps {
-  category: InstrumentCategory;
+  category: InstrumentCategory | string;
   size?: 'small' | 'medium' | 'large';
   style?: ViewStyle;
 }
 
+// Default fallback config for unknown categories
+const DEFAULT_CATEGORY_CONFIG = { label: 'Unknown', color: '#6B7280', bgColor: '#F3F4F6' };
+
 export function CategoryBadge({ category, size = 'medium', style }: CategoryBadgeProps) {
-  const config = CATEGORY_CONFIG[category];
+  // Use category config if exists, otherwise use raw category as label with fallback styling
+  const knownConfig = CATEGORY_CONFIG[category as InstrumentCategory];
+  const config = knownConfig || {
+    ...DEFAULT_CATEGORY_CONFIG,
+    label: category || 'Unknown'
+  };
   
   const sizeStyles = {
     small: { paddingHorizontal: 8, paddingVertical: 2, fontSize: 10 },

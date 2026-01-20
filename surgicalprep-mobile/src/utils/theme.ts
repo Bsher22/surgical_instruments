@@ -68,11 +68,22 @@ export const colors = {
 // Typography
 // ============================================================================
 
-export const typography: Record<string, TextStyle> = {
+// Font weights for use in styles
+export const fontWeights = {
+  normal: '400' as const,
+  medium: '500' as const,
+  semibold: '600' as const,
+  bold: '700' as const,
+};
+
+export const typography = {
+  // Font weights
+  weights: fontWeights,
+
   // Headings
   h1: {
     fontSize: 28,
-    fontWeight: '700',
+    fontWeight: '700' as const,
     lineHeight: 34,
     letterSpacing: -0.5,
   },

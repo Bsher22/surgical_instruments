@@ -54,3 +54,11 @@ export { RefreshableScrollView } from './RefreshableScrollView';
 // Buttons
 export { Button, IconButton } from './Button';
 export type { ButtonVariant, ButtonSize } from './Button';
+
+// Instrument detail components
+export { ZoomableImage } from './ZoomableImage';
+export { CategoryBadge } from './CategoryBadge';
+export { SectionCard } from './SectionCard';
+export { TagList } from './TagList';
+export { BookmarkButton } from './BookmarkButton';
+export { PremiumLockOverlay } from './PremiumLockOverlay';

@@ -1,20 +1,9 @@
 // src/components/ui/SkeletonLoader.tsx
-// Skeleton loading placeholders with shimmer animation
+// Skeleton loading placeholders (web-compatible without shimmer animation)
 
-import React, { useEffect } from 'react';
-import { View, StyleSheet, StyleProp, ViewStyle, Dimensions } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withRepeat,
-  withTiming,
-  Easing,
-  interpolate,
-} from 'react-native-reanimated';
-import { LinearGradient } from 'expo-linear-gradient';
+import React from 'react';
+import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { theme } from '../../theme';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 interface SkeletonProps {
   width?: number | string;
@@ -23,40 +12,13 @@ interface SkeletonProps {
   style?: StyleProp<ViewStyle>;
 }
 
-// Base skeleton component with shimmer
+// Base skeleton component (simplified for web compatibility)
 export const Skeleton: React.FC<SkeletonProps> = ({
   width = '100%',
   height = 16,
   borderRadius = theme.borderRadius.sm,
   style,
 }) => {
-  const shimmerValue = useSharedValue(0);
-
-  useEffect(() => {
-    shimmerValue.value = withRepeat(
-      withTiming(1, {
-        duration: 1500,
-        easing: Easing.linear,
-      }),
-      -1,
-      false
-    );
-  }, [shimmerValue]);
-
-  const shimmerStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          translateX: interpolate(
-            shimmerValue.value,
-            [0, 1],
-            [-SCREEN_WIDTH, SCREEN_WIDTH]
-          ),
-        },
-      ],
-    };
-  });
-
   return (
     <View
       style={[
@@ -68,20 +30,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({
         },
         style,
       ]}
-    >
-      <Animated.View style={[styles.shimmer, shimmerStyle]}>
-        <LinearGradient
-          colors={[
-            'transparent',
-            'rgba(255, 255, 255, 0.3)',
-            'transparent',
-          ]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          style={StyleSheet.absoluteFill}
-        />
-      </Animated.View>
-    </View>
+    />
   );
 };
 
@@ -251,10 +200,6 @@ const styles = StyleSheet.create({
   skeleton: {
     backgroundColor: theme.colors.gray200,
     overflow: 'hidden',
-  },
-  shimmer: {
-    ...StyleSheet.absoluteFillObject,
-    width: SCREEN_WIDTH * 2,
   },
   instrumentCard: {
     flexDirection: 'row',

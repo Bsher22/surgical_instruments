@@ -2,15 +2,7 @@
 // Animated loading spinner component
 
 import React from 'react';
-import { View, StyleSheet, ActivityIndicator, StyleProp, ViewStyle } from 'react-native';
-import Animated, {
-  useAnimatedStyle,
-  withRepeat,
-  withTiming,
-  useSharedValue,
-  withSequence,
-  Easing,
-} from 'react-native-reanimated';
+import { View, StyleSheet, ActivityIndicator, StyleProp, ViewStyle, Text } from 'react-native';
 import { theme } from '../../theme';
 
 export type SpinnerSize = 'small' | 'medium' | 'large';
@@ -68,7 +60,7 @@ export const FullScreenLoader: React.FC<FullScreenLoaderProps> = ({
       <View style={styles.loaderBox}>
         <LoadingSpinner size="large" />
         {message && (
-          <Animated.Text style={styles.message}>{message}</Animated.Text>
+          <Text style={styles.message}>{message}</Text>
         )}
       </View>
     </View>

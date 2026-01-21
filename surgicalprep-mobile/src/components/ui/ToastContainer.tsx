@@ -1,10 +1,9 @@
 // src/components/ui/ToastContainer.tsx
-// Container component that renders all active toasts
+// Container component that renders all active toasts (web-compatible)
 
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Animated, { Layout } from 'react-native-reanimated';
 import { useToastStore } from '../../stores/toastStore';
 import { Toast } from './Toast';
 import { theme } from '../../theme';
@@ -25,7 +24,7 @@ export const ToastContainer: React.FC = () => {
       ]}
       pointerEvents="box-none"
     >
-      <Animated.View layout={Layout.springify()}>
+      <View>
         {toasts.map((toast) => (
           <Toast
             key={toast.id}
@@ -33,7 +32,7 @@ export const ToastContainer: React.FC = () => {
             onDismiss={() => removeToast(toast.id)}
           />
         ))}
-      </Animated.View>
+      </View>
     </View>
   );
 };

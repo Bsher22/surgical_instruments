@@ -1,17 +1,8 @@
 // src/components/OfflineBanner.tsx
-// Persistent banner displayed when device is offline
+// Persistent banner displayed when device is offline (web-compatible)
 
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withSequence,
-  withDelay,
-  SlideInUp,
-  SlideOutUp,
-} from 'react-native-reanimated';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Animated, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useNetworkStatus } from '../hooks/useNetworkStatus';
@@ -25,35 +16,51 @@ interface OfflineBannerProps {
 export const OfflineBanner: React.FC<OfflineBannerProps> = ({ onRetry }) => {
   const { isOffline, isInternetReachable, refresh } = useNetworkStatus();
   const insets = useSafeAreaInsets();
-  const pulse = useSharedValue(1);
+  const [slideAnim] = useState(new Animated.Value(-100));
+  const [pulseAnim] = useState(new Animated.Value(1));
 
-  // Trigger haptic when going offline
+  // Trigger haptic when going offline (only on native)
   useEffect(() => {
-    if (isOffline) {
+    if (isOffline && Platform.OS !== 'web') {
       triggerHaptic('warning');
     }
   }, [isOffline]);
 
+  // Slide animation when offline status changes
+  useEffect(() => {
+    Animated.spring(slideAnim, {
+      toValue: isOffline ? 0 : -100,
+      useNativeDriver: true,
+    }).start();
+  }, [isOffline, slideAnim]);
+
   // Pulse animation for the icon
   useEffect(() => {
     if (isOffline) {
-      const interval = setInterval(() => {
-        pulse.value = withSequence(
-          withSpring(1.1, { damping: 8 }),
-          withDelay(100, withSpring(1, { damping: 8 }))
-        );
-      }, 3000);
+      const pulse = () => {
+        Animated.sequence([
+          Animated.timing(pulseAnim, {
+            toValue: 1.1,
+            duration: 300,
+            useNativeDriver: true,
+          }),
+          Animated.timing(pulseAnim, {
+            toValue: 1,
+            duration: 300,
+            useNativeDriver: true,
+          }),
+        ]).start();
+      };
 
+      const interval = setInterval(pulse, 3000);
       return () => clearInterval(interval);
     }
-  }, [isOffline, pulse]);
-
-  const iconStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: pulse.value }],
-  }));
+  }, [isOffline, pulseAnim]);
 
   const handleRetry = async () => {
-    triggerHaptic('light');
+    if (Platform.OS !== 'web') {
+      triggerHaptic('light');
+    }
     await refresh();
     onRetry?.();
   };
@@ -68,24 +75,25 @@ export const OfflineBanner: React.FC<OfflineBannerProps> = ({ onRetry }) => {
 
   return (
     <Animated.View
-      entering={SlideInUp.springify().damping(15)}
-      exiting={SlideOutUp.duration(200)}
       style={[
         styles.container,
-        { paddingTop: insets.top > 0 ? insets.top : theme.spacing.sm },
+        {
+          paddingTop: insets.top > 0 ? insets.top : theme.spacing.sm,
+          transform: [{ translateY: slideAnim }],
+        },
       ]}
     >
       <View style={styles.content}>
-        <Animated.View style={iconStyle}>
+        <Animated.View style={{ transform: [{ scale: pulseAnim }] }}>
           <Ionicons
             name="cloud-offline-outline"
             size={20}
             color={theme.colors.white}
           />
         </Animated.View>
-        
+
         <Text style={styles.message}>{message}</Text>
-        
+
         <TouchableOpacity
           style={styles.retryButton}
           onPress={handleRetry}
@@ -100,7 +108,7 @@ export const OfflineBanner: React.FC<OfflineBannerProps> = ({ onRetry }) => {
           />
         </TouchableOpacity>
       </View>
-      
+
       <Text style={styles.subMessage}>
         Some features may be unavailable
       </Text>
@@ -113,6 +121,11 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.warning,
     paddingHorizontal: theme.spacing.md,
     paddingBottom: theme.spacing.sm,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 9999,
   },
   content: {
     flexDirection: 'row',

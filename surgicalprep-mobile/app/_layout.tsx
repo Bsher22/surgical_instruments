@@ -2,13 +2,18 @@
 // Root layout with all Stage 10 polish integrations
 
 import React, { useEffect } from 'react';
-import { StyleSheet, View, LogBox } from 'react-native';
+import { StyleSheet, View, LogBox, Platform } from 'react-native';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
+
+// Conditionally import GestureHandlerRootView only on native
+// On web, we use a plain View to avoid issues with the native module
+const GestureWrapper = Platform.OS === 'web'
+  ? View
+  : require('react-native-gesture-handler').GestureHandlerRootView;
 
 // API & State
 import { getQueryClient } from '../src/api/queryClient';
@@ -73,7 +78,7 @@ export default function RootLayout() {
         // TODO: Sentry.captureException(error)
       }}
     >
-      <GestureHandlerRootView style={styles.container}>
+      <GestureWrapper style={styles.container}>
         <SafeAreaProvider>
           <QueryClientProvider client={queryClient}>
             {/* Status bar */}
@@ -119,7 +124,7 @@ export default function RootLayout() {
             </Stack>
           </QueryClientProvider>
         </SafeAreaProvider>
-      </GestureHandlerRootView>
+      </GestureWrapper>
     </ErrorBoundary>
   );
 }

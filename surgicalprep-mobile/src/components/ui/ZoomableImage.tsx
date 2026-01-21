@@ -8,19 +8,8 @@ import {
   Pressable,
   ActivityIndicator,
   Text,
+  Platform,
 } from 'react-native';
-import {
-  GestureDetector,
-  Gesture,
-  GestureHandlerRootView,
-} from 'react-native-gesture-handler';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-  withTiming,
-  runOnJS,
-} from 'react-native-reanimated';
 import { Ionicons } from '@expo/vector-icons';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
@@ -32,94 +21,26 @@ interface ZoomableImageProps {
   fallbackIcon?: string;
 }
 
+// Web-compatible ZoomableImage that doesn't use gesture handler or reanimated
 export function ZoomableImage({ uri, alt, fallbackIcon = 'medical-outline' }: ZoomableImageProps) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-
-  // Zoom/pan values for modal
-  const scale = useSharedValue(1);
-  const savedScale = useSharedValue(1);
-  const translateX = useSharedValue(0);
-  const translateY = useSharedValue(0);
-  const savedTranslateX = useSharedValue(0);
-  const savedTranslateY = useSharedValue(0);
-
-  const resetZoom = useCallback(() => {
-    scale.value = withSpring(1);
-    translateX.value = withSpring(0);
-    translateY.value = withSpring(0);
-    savedScale.value = 1;
-    savedTranslateX.value = 0;
-    savedTranslateY.value = 0;
-  }, []);
+  const [scale, setScale] = useState(1);
 
   const openModal = () => {
-    resetZoom();
+    setScale(1);
     setIsModalVisible(true);
   };
 
   const closeModal = () => {
     setIsModalVisible(false);
-    resetZoom();
+    setScale(1);
   };
 
-  // Pinch gesture for zooming
-  const pinchGesture = Gesture.Pinch()
-    .onUpdate((event) => {
-      scale.value = Math.min(Math.max(savedScale.value * event.scale, 1), 5);
-    })
-    .onEnd(() => {
-      savedScale.value = scale.value;
-      if (scale.value < 1) {
-        scale.value = withSpring(1);
-        savedScale.value = 1;
-      }
-    });
-
-  // Pan gesture for moving the zoomed image
-  const panGesture = Gesture.Pan()
-    .onUpdate((event) => {
-      if (scale.value > 1) {
-        translateX.value = savedTranslateX.value + event.translationX;
-        translateY.value = savedTranslateY.value + event.translationY;
-      }
-    })
-    .onEnd(() => {
-      savedTranslateX.value = translateX.value;
-      savedTranslateY.value = translateY.value;
-    });
-
-  // Double tap to zoom in/out
-  const doubleTapGesture = Gesture.Tap()
-    .numberOfTaps(2)
-    .onEnd(() => {
-      if (scale.value > 1) {
-        scale.value = withSpring(1);
-        translateX.value = withSpring(0);
-        translateY.value = withSpring(0);
-        savedScale.value = 1;
-        savedTranslateX.value = 0;
-        savedTranslateY.value = 0;
-      } else {
-        scale.value = withSpring(2.5);
-        savedScale.value = 2.5;
-      }
-    });
-
-  const composedGesture = Gesture.Simultaneous(
-    pinchGesture,
-    panGesture,
-    doubleTapGesture
-  );
-
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [
-      { translateX: translateX.value },
-      { translateY: translateY.value },
-      { scale: scale.value },
-    ],
-  }));
+  const toggleZoom = () => {
+    setScale(scale > 1 ? 1 : 2.5);
+  };
 
   // Fallback placeholder when no image
   if (!uri || hasError) {
@@ -162,24 +83,28 @@ export function ZoomableImage({ uri, alt, fallbackIcon = 'medical-outline' }: Zo
         transparent
         animationType="fade"
         onRequestClose={closeModal}
-        statusBarTranslucent
       >
-        <GestureHandlerRootView style={styles.modalContainer}>
+        <View style={styles.modalContainer}>
           <Pressable style={styles.closeButton} onPress={closeModal}>
             <Ionicons name="close" size={28} color="#FFF" />
           </Pressable>
 
-          <GestureDetector gesture={composedGesture}>
-            <Animated.Image
+          <Pressable onPress={toggleZoom} style={styles.imageContainer}>
+            <Image
               source={{ uri }}
-              style={[styles.fullImage, animatedStyle]}
+              style={[
+                styles.fullImage,
+                { transform: [{ scale }] }
+              ]}
               resizeMode="contain"
             />
-          </GestureDetector>
+          </Pressable>
 
           <Text style={styles.imageAlt}>{alt}</Text>
-          <Text style={styles.gestureHint}>Pinch to zoom • Double tap to toggle</Text>
-        </GestureHandlerRootView>
+          <Text style={styles.gestureHint}>
+            {Platform.OS === 'web' ? 'Click to toggle zoom' : 'Double tap to toggle zoom'}
+          </Text>
+        </View>
       </Modal>
     </>
   );
@@ -253,6 +178,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.15)',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  imageContainer: {
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT * 0.7,
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
   },
   fullImage: {
     width: SCREEN_WIDTH,

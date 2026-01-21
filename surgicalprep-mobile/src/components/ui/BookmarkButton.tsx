@@ -1,12 +1,5 @@
-import React from 'react';
-import { Pressable, StyleSheet, ViewStyle } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-  withSequence,
-  interpolateColor,
-} from 'react-native-reanimated';
+import React, { useState } from 'react';
+import { Pressable, StyleSheet, ViewStyle, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 
@@ -17,80 +10,58 @@ interface BookmarkButtonProps {
   style?: ViewStyle;
 }
 
-const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
-
+// Web-compatible BookmarkButton that doesn't use reanimated
 export function BookmarkButton({
   isBookmarked,
   onToggle,
   size = 24,
   style,
 }: BookmarkButtonProps) {
-  const scale = useSharedValue(1);
-  const bookmarkProgress = useSharedValue(isBookmarked ? 1 : 0);
-
-  React.useEffect(() => {
-    bookmarkProgress.value = withSpring(isBookmarked ? 1 : 0);
-  }, [isBookmarked]);
+  const [isPressed, setIsPressed] = useState(false);
 
   const handlePress = async () => {
-    // Haptic feedback
-    await Haptics.impactAsync(
-      isBookmarked
-        ? Haptics.ImpactFeedbackStyle.Light
-        : Haptics.ImpactFeedbackStyle.Medium
-    );
+    // Haptic feedback only on native
+    if (Platform.OS !== 'web') {
+      await Haptics.impactAsync(
+        isBookmarked
+          ? Haptics.ImpactFeedbackStyle.Light
+          : Haptics.ImpactFeedbackStyle.Medium
+      );
+    }
 
-    // Pop animation
-    scale.value = withSequence(
-      withSpring(1.3, { damping: 8 }),
-      withSpring(1, { damping: 8 })
-    );
+    // Simple press animation
+    setIsPressed(true);
+    setTimeout(() => setIsPressed(false), 150);
 
     onToggle();
   };
 
-  const animatedContainerStyle = useAnimatedStyle(() => {
-    const backgroundColor = interpolateColor(
-      bookmarkProgress.value,
-      [0, 1],
-      ['rgba(59, 130, 246, 0.1)', 'rgba(59, 130, 246, 1)']
-    );
+  const backgroundColor = isBookmarked
+    ? 'rgba(59, 130, 246, 1)'
+    : 'rgba(59, 130, 246, 0.1)';
 
-    return {
-      transform: [{ scale: scale.value }],
-      backgroundColor,
-    };
-  });
-
-  const animatedIconStyle = useAnimatedStyle(() => {
-    const color = interpolateColor(
-      bookmarkProgress.value,
-      [0, 1],
-      ['#3B82F6', '#FFFFFF']
-    );
-
-    return {
-      color,
-    };
-  });
+  const iconColor = isBookmarked ? '#FFFFFF' : '#3B82F6';
 
   return (
-    <AnimatedPressable
+    <Pressable
       onPress={handlePress}
       style={[
         styles.container,
-        { width: size + 20, height: size + 20 },
-        animatedContainerStyle,
+        {
+          width: size + 20,
+          height: size + 20,
+          backgroundColor,
+          transform: [{ scale: isPressed ? 1.2 : 1 }],
+        },
         style,
       ]}
     >
-      <Animated.Text style={animatedIconStyle}>
-        <Ionicons
-          name={isBookmarked ? 'bookmark' : 'bookmark-outline'}
-          size={size}
-        />
-      </Animated.Text>
-    </AnimatedPressable>
+      <Ionicons
+        name={isBookmarked ? 'bookmark' : 'bookmark-outline'}
+        size={size}
+        color={iconColor}
+      />
+    </Pressable>
   );
 }
 
